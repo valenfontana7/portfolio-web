@@ -1,0 +1,246 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #3b4c3a;
+  color: #333;
+}
+
+header {
+  width: 100%;
+  padding: 1rem 1.8rem;
+  display: flex;
+  justify-content: flex-start;
+  position: fixed;
+}
+
+.header__logo {
+  color: white;
+  font-size: 4rem;
+  font-weight: 300;
+  font-family: "Georgia", serif;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+.welcome-1 {
+  font-size: 5rem;
+}
+
+.welcome-2 {
+  font-size: 18rem;
+}
+
+.welcome-3 {
+  font-size: 4rem;
+}
+
+main {
+  width: 100%;
+  padding: 25rem 45rem 2rem 25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 13rem;
+}
+
+.landing-actions {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 4rem;
+}
+
+.landing-actions__button-primary {
+  background-color: white;
+  border: none;
+  color: #3b4c3a;
+  font-size: 3rem;
+  font-weight: 500;
+  padding: 2.5rem 5rem;
+  border-radius: 5rem;
+  text-align: left;
+  font-family: "Georgia", serif;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.landing-actions__button-secondary {
+  background-color: #3b4c3a;
+  border: none;
+  color: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 1);
+  font-size: 3rem;
+  font-weight: 500;
+  padding: 2.5rem 5rem;
+  border-radius: 5rem;
+  text-align: left;
+  font-family: "Georgia", serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landing-actions__button-primary:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 1);
+}
+
+.landing-actions__button-secondary:hover {
+  background-color: #2a3b2a;
+}
+
+main h1 {
+  color: white;
+  font-family: "Georgia", serif;
+  margin-bottom: 4rem;
+  font-weight: 300;
+  user-select: none;
+  animation: appear ease-in-out 1s;
+}
+
+main h2 {
+  font-size: 8rem;
+  color: white;
+  font-family: "Georgia", serif;
+  margin-bottom: 4rem;
+  font-weight: 300;
+  user-select: none;
+  animation: reveal ease-in-out;
+  animation-timeline: view();
+  animation-range: cover 0% cover 80%;
+}
+
+main p {
+  font-size: 4rem;
+  color: white;
+  font-family: "Georgia", serif;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  user-select: none;
+}
+
+main .me {
+  width: 55rem;
+  height: 55rem;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  animation: appear ease-in-out 1s;
+}
+
+.sideBarNav__nav {
+  width: 26rem;
+  height: 60rem;
+  position: fixed;
+  right: 5rem;
+  top: calc(50vh - 30rem);
+  padding: 1rem;
+  border-left: 1px solid #f9f9f6ca;
+}
+
+.sideBarNav__nav ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sideBarNav__nav ul li {
+  height: 20%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.sideBarNav__nav ul li:hover {
+  background-color: #f9f9f6ca;
+}
+
+.sideBarNav__nav ul li:hover button {
+  color: #3b4c3a;
+}
+.sideBarNav__nav ul li button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  padding-left: 2rem;
+  text-align: left;
+  font-family: "Georgia", serif;
+  cursor: pointer;
+}
+
+main .firstPage {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+main .firstPage p {
+  animation: appear ease-in-out 1s;
+}
+
+main .secondPage {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main .thirdPage {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+}
+
+main .secondPage p {
+  animation: reveal ease-in-out 1s;
+  animation-timeline: view();
+  animation-range: cover 0% cover 50%;
+}
+
+@keyframes reveal {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
