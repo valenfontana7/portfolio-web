@@ -20,11 +20,17 @@ header {
   display: flex;
   justify-content: flex-start;
   position: fixed;
+  box-shadow: 0 4px 40px 0px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
 }
 
 .header__logo {
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 300;
   font-family: "Georgia", serif;
   margin-top: 2rem;
@@ -34,20 +40,23 @@ header {
 }
 
 .welcome-1 {
-  font-size: 5rem;
+  font-size: 3rem;
 }
 
 .welcome-2 {
-  font-size: 18rem;
+  width: 70%;
+  font-size: 8rem;
+  line-height: 12rem;
 }
 
 .welcome-3 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 main {
   width: 100%;
-  padding: 25rem 45rem 2rem 25rem;
+  padding-right: 45rem;
+  padding-left: 22rem;
   display: flex;
   flex-direction: column;
 }
@@ -55,29 +64,30 @@ main {
 .leftColumn {
   display: flex;
   flex-direction: column;
-  row-gap: 2rem;
+  justify-content: center;
+  row-gap: 1rem;
 }
 
 .rightColumn {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 13rem;
+  justify-content: center;
 }
 
 .landing-actions {
   display: flex;
-  justify-content: flex-end;
-  column-gap: 4rem;
+  justify-content: flex-start;
+  column-gap: 3rem;
+  padding-top: 3rem;
 }
 
 .landing-actions__button-primary {
   background-color: white;
   border: none;
   color: #3b4c3a;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
-  padding: 2.5rem 5rem;
+  padding: 1.6rem 2.5rem;
   border-radius: 5rem;
   text-align: left;
   font-family: "Georgia", serif;
@@ -89,10 +99,10 @@ main {
   background-color: #3b4c3a;
   border: none;
   color: white;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 1);
-  font-size: 3rem;
+  box-shadow: 0 0 0.4rem rgb(30, 30, 30);
+  font-size: 2rem;
   font-weight: 500;
-  padding: 2.5rem 5rem;
+  padding: 1.6rem 2.5rem;
   border-radius: 5rem;
   text-align: left;
   font-family: "Georgia", serif;
@@ -101,7 +111,7 @@ main {
 }
 
 .landing-actions__button-primary:hover {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 1);
 }
 
 .landing-actions__button-secondary:hover {
@@ -110,6 +120,7 @@ main {
 
 main h1 {
   color: white;
+  font-size: 2.5rem;
   font-family: "Georgia", serif;
   margin-bottom: 4rem;
   font-weight: 300;
@@ -118,7 +129,7 @@ main h1 {
 }
 
 main h2 {
-  font-size: 8rem;
+  font-size: 4rem;
   color: white;
   font-family: "Georgia", serif;
   margin-bottom: 4rem;
@@ -130,7 +141,7 @@ main h2 {
 }
 
 main p {
-  font-size: 4rem;
+  font-size: 2rem;
   color: white;
   font-family: "Georgia", serif;
   line-height: 1.5;
@@ -139,10 +150,10 @@ main p {
 }
 
 main .me {
-  width: 55rem;
-  height: 55rem;
+  width: 38rem;
+  height: 38rem;
   border-radius: 50%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 0.5rem rgb(30, 30, 30);
   animation: appear ease-in-out 1s;
 }
 
@@ -150,7 +161,7 @@ main .me {
   width: 26rem;
   height: 60rem;
   position: fixed;
-  right: 5rem;
+  right: 10rem;
   top: calc(50vh - 30rem);
   padding: 1rem;
   border-left: 1px solid #f9f9f6ca;
@@ -183,7 +194,7 @@ main .me {
   background-color: transparent;
   border: none;
   color: white;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 300;
   padding-left: 2rem;
   text-align: left;
@@ -193,9 +204,10 @@ main .me {
 
 main .firstPage {
   width: 100%;
-  height: 80vh;
+  height: calc(100vh - 7.4rem);
   display: flex;
   justify-content: space-between;
+  padding-top: 10rem;
 }
 
 main .firstPage p {
@@ -204,17 +216,19 @@ main .firstPage p {
 
 main .secondPage {
   width: 100%;
-  height: 80vh;
+  height: calc(100vh - 7.4rem);
+
   display: flex;
   flex-direction: column;
+  padding-top: 10rem;
 }
 
 main .thirdPage {
   width: 100%;
-  height: 80vh;
+  height: calc(100vh - 7.4rem);
   display: flex;
   flex-direction: column;
-  padding-top: 5rem;
+  padding-top: 10rem;
 }
 
 main .secondPage p {
@@ -242,5 +256,177 @@ main .secondPage p {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 5px) and (max-width: 500px) {
+  main {
+    width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .header__logo {
+    margin-left: 1rem;
+  }
+  main h1 {
+    margin-bottom: 1rem;
+  }
+  main p {
+    margin-bottom: 0rem;
+  }
+  main .me {
+    width: 30vw;
+    height: 30vw;
+  }
+  .welcome-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30vh;
+  }
+  .welcome-1,
+  .welcome-3 {
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .welcome-2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    font-size: 5rem;
+    line-height: 7rem;
+  }
+  .leftColumn {
+    height: 100vh;
+    max-height: 700px;
+    justify-content: space-between;
+    padding-top: 8rem;
+    row-gap: 0rem;
+  }
+  .rightColumn {
+    position: absolute;
+    top: 50vh;
+  }
+  main .firstPage,
+  main .secondPage,
+  main .thirdPage {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+  }
+  .landing-actions {
+    width: 100%;
+    column-gap: 2rem;
+    justify-content: space-between;
+  }
+  .sideBarNav__nav {
+    display: none;
+    width: 10rem;
+    right: 1rem;
+  }
+  .sideBarNav__nav ul li button {
+    font-size: 1.8rem;
+    padding-left: 1rem;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 700px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .header__logo {
+    font-size: 2.5rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+  main {
+    padding: 8rem 1rem 2rem 1rem;
+  }
+  .welcome-1,
+  .welcome-3 {
+    font-size: 2.2rem;
+  }
+  .welcome-2 {
+    font-size: 5rem;
+  }
+  .main .me {
+    width: 18rem;
+    height: 18rem;
+  }
+  .sideBarNav__nav {
+    display: none;
+  }
+  .landing-actions__button-primary,
+  .landing-actions__button-secondary {
+    font-size: 1.6rem;
+    padding: 1.2rem 2.5rem;
+  }
+  main .firstPage,
+  main .secondPage,
+  main .thirdPage {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 900px) {
+  main {
+    padding: 10rem 2rem 2rem 2rem;
+  }
+  .welcome-2 {
+    font-size: 8rem;
+  }
+  .sideBarNav__nav {
+    width: 18rem;
+    height: 40rem;
+    top: calc(50vh - 20rem);
+  }
+  .main .me {
+    width: 28rem;
+    height: 28rem;
+  }
+}
+
+/* Responsive styles */
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+  main {
+    width: 80%;
+    padding: 8rem 9rem 2rem 5rem;
+  }
+  .welcome-1 {
+    font-size: 2.5rem;
+  }
+  .welcome-2 {
+    font-size: 6rem;
+    line-height: 8rem;
+  }
+  .welcome-3 {
+    font-size: 2.5rem;
+  }
+  .rightColumn {
+    height: 65%;
+  }
+  .leftColumn {
+    row-gap: 3rem;
+  }
+  main .me {
+    width: 30rem;
+    height: 30rem;
+  }
+  .sideBarNav__nav {
+    width: 22rem;
+    right: 2rem;
+  }
+  .sideBarNav__nav ul li button {
+    font-size: 2rem;
   }
 }

@@ -8,6 +8,27 @@
   </head>
   <body>
     <header>
+      <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+        window.addEventListener(
+          "scroll",
+          function () {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            if (st > lastScrollTop && st > 50) {
+              // Scroll down
+              header.style.transform = "translateY(-100%)";
+              header.style.transition = "transform 0.3s";
+            } else {
+              // Scroll up
+              header.style.transform = "translateY(0)";
+              header.style.transition = "transform 0.3s";
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+          },
+          false
+        );
+      </script>
       <h1
         onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
         class="header__logo"
@@ -56,9 +77,11 @@
       </nav>
       <section class="firstPage">
         <div class="leftColumn">
-          <h1 class="welcome-1">Hola, soy Valentín Fontana</h1>
-          <h1 class="welcome-2">Desarrollador de Software</h1>
-          <p class="welcome-3">en Buenos Aires, Argentina.</p>
+          <div class="welcome-message">
+            <h1 class="welcome-1">Hola, soy Valentín Fontana</h1>
+            <h1 class="welcome-2">Desarrollador de Software</h1>
+            <p class="welcome-3">en Buenos Aires, Argentina.</p>
+          </div>
           <div class="landing-actions">
             <button
               class="landing-actions__button-primary"
