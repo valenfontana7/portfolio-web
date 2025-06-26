@@ -8,9 +8,17 @@ html {
   font-size: 62.5%; /* 1rem = 10px */
 }
 
+a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #3b4c3a;
+  font-family: "Georgia", serif;
+  background-color: #2c392a;
+  background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
   color: #333;
 }
 
@@ -44,9 +52,9 @@ header {
 }
 
 .welcome-2 {
-  width: 70%;
-  font-size: 8rem;
-  line-height: 12rem;
+  width: 60%;
+  font-size: 9rem;
+  line-height: 15rem;
 }
 
 .welcome-3 {
@@ -55,23 +63,26 @@ header {
 
 main {
   width: 100%;
-  padding-right: 45rem;
+  padding-right: 55rem;
   padding-left: 22rem;
   display: flex;
   flex-direction: column;
 }
 
 .leftColumn {
+  height: 95rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  row-gap: 1rem;
+  justify-content: space-between;
+  padding-top: 32.4rem;
 }
 
 .rightColumn {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: calc(100vh - 7.4rem);
+  padding-top: 10rem;
 }
 
 .landing-actions {
@@ -85,9 +96,9 @@ main {
   background-color: white;
   border: none;
   color: #3b4c3a;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 500;
-  padding: 1.6rem 2.5rem;
+  padding: 2.6rem 4rem;
   border-radius: 5rem;
   text-align: left;
   font-family: "Georgia", serif;
@@ -96,13 +107,14 @@ main {
 }
 
 .landing-actions__button-secondary {
-  background-color: #3b4c3a;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  background-color: rgb(131, 66, 26);
   border: none;
   color: white;
   box-shadow: 0 0 0.4rem rgb(30, 30, 30);
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 500;
-  padding: 1.6rem 2.5rem;
+  padding: 2.6rem 4rem;
   border-radius: 5rem;
   text-align: left;
   font-family: "Georgia", serif;
@@ -115,12 +127,12 @@ main {
 }
 
 .landing-actions__button-secondary:hover {
-  background-color: #2a3b2a;
+  background-color: rgb(111, 52, 14);
 }
 
 main h1 {
   color: white;
-  font-size: 2.5rem;
+  font-size: 7rem;
   font-family: "Georgia", serif;
   margin-bottom: 4rem;
   font-weight: 300;
@@ -129,15 +141,12 @@ main h1 {
 }
 
 main h2 {
-  font-size: 4rem;
+  font-size: 5rem;
   color: white;
   font-family: "Georgia", serif;
   margin-bottom: 4rem;
   font-weight: 300;
   user-select: none;
-  animation: reveal ease-in-out;
-  animation-timeline: view();
-  animation-range: cover 0% cover 80%;
 }
 
 main p {
@@ -150,28 +159,30 @@ main p {
 }
 
 main .me {
-  width: 38rem;
-  height: 38rem;
+  width: 80rem;
+  height: 80rem;
   border-radius: 50%;
   box-shadow: 0 0 0.5rem rgb(30, 30, 30);
   animation: appear ease-in-out 1s;
 }
 
 .sideBarNav__nav {
-  width: 26rem;
-  height: 60rem;
+  height: calc(100vh - 7.4rem);
   position: fixed;
+  display: flex;
+  align-items: center;
   right: 10rem;
-  top: calc(50vh - 30rem);
-  padding: 1rem;
-  border-left: 1px solid #f9f9f6ca;
+  padding-top: 10rem;
 }
 
 .sideBarNav__nav ul {
-  height: 100%;
+  width: 26rem;
+  height: 60rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-left: 1px solid #f9f9f6ca;
+  padding: 1rem;
 }
 
 .sideBarNav__nav ul li {
@@ -190,11 +201,19 @@ main .me {
 .sideBarNav__nav ul li:hover button {
   color: #3b4c3a;
 }
+
+.sideBarNav__nav ul li button:focus,
+.sideBarNav__nav ul li button:active {
+  outline: none;
+}
+
 .sideBarNav__nav ul li button {
+  width: 100%;
+  height: 100%;
   background-color: transparent;
   border: none;
   color: white;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 300;
   padding-left: 2rem;
   text-align: left;
@@ -203,11 +222,10 @@ main .me {
 }
 
 main .firstPage {
-  width: 100%;
-  height: calc(100vh - 7.4rem);
+  width: 90%;
+  height: 100vh;
   display: flex;
   justify-content: space-between;
-  padding-top: 10rem;
 }
 
 main .firstPage p {
@@ -215,26 +233,225 @@ main .firstPage p {
 }
 
 main .secondPage {
-  width: 100%;
-  height: calc(100vh - 7.4rem);
-
+  width: 90%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 10rem;
+  row-gap: 1rem;
+  padding-top: 14rem;
 }
 
 main .thirdPage {
   width: 100%;
-  height: calc(100vh - 7.4rem);
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 10rem;
+  padding-top: 12rem;
+}
+
+main .thirdPage ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 6rem;
+  row-gap: 6rem;
+  padding-left: 2rem;
+  padding-top: 15rem;
+}
+
+main .thirdPage ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26rem;
+  list-style: none;
+  font-size: 3.5rem;
+  color: white;
+  font-family: "Georgia", serif;
+  margin-bottom: 1rem;
+  border: 1px solid #f9f9f6ca;
+  border-radius: 1rem;
+  padding: 3.5rem;
+  user-select: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+main .thirdPage ul li:hover {
+  background-color: #f9f9f6ca;
+  color: #3b4c3a;
+  transform: scale(1.2);
 }
 
 main .secondPage p {
-  animation: reveal ease-in-out 1s;
-  animation-timeline: view();
-  animation-range: cover 0% cover 50%;
+  animation: appear ease-in-out 1s;
+
+  line-height: 7.2rem;
+  letter-spacing: 0.1rem;
+  font-size: 2.8rem;
+  font-weight: 300;
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+
+main .projects {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 9rem;
+}
+
+main .fifthPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 9rem;
+}
+
+main .fifthPage p {
+  animation: appear ease-in-out 1s;
+  font-size: 2.8rem;
+  color: white;
+  font-family: "Georgia", serif;
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+
+footer {
+  box-shadow: 0 4px 40px 0px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  padding: 4rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #f9f9f6ca;
+  font-family: "Georgia", serif;
+  p {
+    font-size: 2.8rem;
+  }
+}
+
+main .projects ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 2rem;
+  margin: 4rem 0 4rem 4rem;
+}
+
+main .projects p {
+  animation: appear ease-in-out 1s;
+  font-size: 2.8rem;
+  color: white;
+  font-family: "Georgia", serif;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 3rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 0.5rem;
+  align-items: center;
+  position: relative;
+  width: 35rem;
+  height: 48rem;
+  background-color: #533312;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid rgba(136, 78, 37, 0.502);
+  border-radius: 16px;
+  padding: 4rem 2rem;
+  color: #fff; /* si la madera es oscura */
+}
+
+.project-card__imageContainer {
+  display: flex;
+  width: 21rem;
+  height: 13rem;
+  object-fit: cover;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-card__image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10rem;
+  height: 10rem;
+}
+
+.project-card__image {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
+.project-card__imageContainerShadow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 15.4rem;
+  height: 9.8rem;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+main .projects .project-card__title {
+  font-size: 4rem;
+  padding-top: 2rem;
+  margin: 0;
+  font-weight: 300;
+  margin-top: 1rem;
+  color: whitesmoke;
+  text-align: center;
+}
+main .projects .project-card__description {
+  padding: 0 1rem;
+  font-size: 2rem;
+  color: whitesmoke;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+main .projects .project-card__actions {
+  display: flex;
+  justify-content: center;
+  column-gap: 1rem;
+  margin-top: 2rem;
+}
+main .projects .project-card__actionButton {
+  background-color: rgb(111, 52, 14);
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  border: none;
+  color: whitesmoke;
+  box-shadow: 0 0 0.4rem rgb(30, 30, 30);
+  border: 1px solid rgba(136, 78, 37, 0.502);
+  font-weight: 300;
+  font-size: 1.8rem;
+  border-radius: 1rem;
+  text-align: left;
+  font-family: "Georgia", serif;
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  padding: 1rem 3rem;
+  transition: background-color 0.3s ease;
 }
 
 @keyframes reveal {
@@ -259,174 +476,362 @@ main .secondPage p {
   }
 }
 
-@media screen and (min-width: 5px) and (max-width: 500px) {
+@media (max-width: 1920px) {
+  html {
+    font-size: 56.25%; /* 1rem = 9px */
+  }
   main {
-    width: 100%;
-    padding-right: 3rem;
-    padding-left: 3rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .header__logo {
-    margin-left: 1rem;
-  }
-  main h1 {
-    margin-bottom: 1rem;
-  }
-  main p {
-    margin-bottom: 0rem;
+    padding-right: 26rem;
+    padding-left: 12rem;
   }
   main .me {
-    width: 30vw;
-    height: 30vw;
-  }
-  .welcome-message {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 30vh;
-  }
-  .welcome-1,
-  .welcome-3 {
-    font-size: 1.8rem;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+    width: 65rem;
+    height: 65rem;
   }
   .welcome-2 {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    font-size: 5rem;
-    line-height: 7rem;
+    font-size: 7rem;
+    line-height: 11rem;
   }
-  .leftColumn {
-    height: 100vh;
-    max-height: 700px;
-    justify-content: space-between;
-    padding-top: 8rem;
-    row-gap: 0rem;
+  main h1 {
+    font-size: 5.5rem;
   }
-  .rightColumn {
-    position: absolute;
-    top: 50vh;
-  }
-  main .firstPage,
-  main .secondPage,
-  main .thirdPage {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 3rem;
-  }
-  .landing-actions {
-    width: 100%;
-    column-gap: 2rem;
-    justify-content: space-between;
+  main h2 {
+    font-size: 4rem;
   }
   .sideBarNav__nav {
-    display: none;
-    width: 10rem;
-    right: 1rem;
+    right: 5rem;
   }
-  .sideBarNav__nav ul li button {
-    font-size: 1.8rem;
-    padding-left: 1rem;
+  .sideBarNav__nav ul {
+    width: 22rem;
+    height: 50rem;
+  }
+  main .secondPage p {
+    font-size: 2.4rem;
+    line-height: 5.8rem;
+    margin-top: 1rem;
+  }
+  main .thirdPage ul li {
+    width: 20rem;
+    font-size: 2.8rem;
+    padding: 2.5rem;
+  }
+  .project-card {
+    width: 34rem;
+    height: 42rem;
+    padding: 3rem 1.5rem;
+  }
+  .project-card__imageContainer {
+    width: 16rem;
+    height: 10rem;
+  }
+  .project-card__imageContainerShadow {
+    left: 50%;
+    top: 18%;
+    width: 11.9rem;
+    height: 7.6rem;
+  }
+  .project-card__image {
+    width: 8rem;
+    height: 8rem;
   }
 }
 
-@media screen and (min-width: 500px) and (max-width: 700px) {
+@media (max-width: 1024px) {
+  html {
+    font-size: 50%; /* 1rem = 8px */
+  }
+  main {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
   header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
+    position: static;
   }
   .header__logo {
-    font-size: 2.5rem;
-    margin-top: 1rem;
-    margin-left: 1rem;
-  }
-  main {
-    padding: 8rem 1rem 2rem 1rem;
-  }
-  .welcome-1,
-  .welcome-3 {
-    font-size: 2.2rem;
-  }
-  .welcome-2 {
     font-size: 5rem;
-  }
-  .main .me {
-    width: 18rem;
-    height: 18rem;
   }
   .sideBarNav__nav {
     display: none;
   }
-  .landing-actions__button-primary,
-  .landing-actions__button-secondary {
-    font-size: 1.6rem;
-    padding: 1.2rem 2.5rem;
-  }
-  main .firstPage,
-  main .secondPage,
-  main .thirdPage {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding-top: 2rem;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 900px) {
-  main {
-    padding: 10rem 2rem 2rem 2rem;
-  }
-  .welcome-2 {
-    font-size: 8rem;
-  }
-  .sideBarNav__nav {
-    width: 18rem;
-    height: 40rem;
-    top: calc(50vh - 20rem);
-  }
-  .main .me {
-    width: 28rem;
-    height: 28rem;
-  }
-}
-
-/* Responsive styles */
-@media screen and (min-width: 900px) and (max-width: 1200px) {
-  main {
-    width: 80%;
-    padding: 8rem 9rem 2rem 5rem;
-  }
-  .welcome-1 {
-    font-size: 2.5rem;
-  }
-  .welcome-2 {
-    font-size: 6rem;
-    line-height: 8rem;
-  }
+  .welcome-1,
   .welcome-3 {
     font-size: 2.5rem;
   }
-  .rightColumn {
-    height: 65%;
+  .welcome-2 {
+    font-size: 7rem;
+    line-height: 7rem;
+    width: 100%;
+  }
+  main .me {
+    width: 60rem;
+    height: 60rem;
+  }
+  main h1 {
+    font-size: 5rem;
+  }
+  main h2 {
+    font-size: 4rem;
   }
   .leftColumn {
-    row-gap: 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 12rem;
+    padding-left: 6rem;
+    padding-top: 2rem;
+  }
+  .rightColumn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 4rem;
+  }
+  main .firstPage,
+  main .secondPage,
+  main .thirdPage,
+  main .projects,
+  main .fifthPage {
+    width: 100%;
+    min-height: calc(100vh - 7.4rem);
+    height: 100vh;
+    padding-top: 10rem;
+    flex-direction: column;
+  }
+  main .firstPage {
+    height: calc(100vh - 7.4rem);
+    flex-direction: column-reverse;
+    padding-top: 0rem;
+  }
+  main .projects {
+    height: 100%;
+    flex-wrap: wrap;
+  }
+  main .thirdPage ul {
+    padding-top: 5rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
+  }
+  main .thirdPage ul li {
+    width: 15rem;
+    font-size: 2rem;
+    padding: 1.5rem;
+  }
+  .project-card {
+    width: 90vw;
+    max-width: 52rem;
+    height: 42rem;
+    padding: 2rem 1rem;
+  }
+  .project-card__imageContainer {
+    width: 12rem;
+    height: 7rem;
+  }
+  .project-card__imageContainerShadow {
+    width: 8.9rem;
+    height: 5.6rem;
+    top: 12%;
+  }
+  .project-card__image {
+    width: 5rem;
+    height: 5rem;
+  }
+  main .projects .project-card__title {
+    padding-top: 0rem;
+  }
+  main .projects .project-card__actionButton {
+    font-size: 1.6rem;
+    padding: 0.8rem 1.3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  header {
+    position: static;
+    padding: 0.5rem 0.5rem;
+  }
+  .header__logo {
+    font-size: 4rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+  .sideBarNav__nav {
+    display: none;
+  }
+  .welcome-1,
+  .welcome-3 {
+    font-size: 2rem;
+  }
+  .welcome-2 {
+    font-size: 5rem;
+    line-height: 6rem;
+    width: 70%;
   }
   main .me {
     width: 30rem;
     height: 30rem;
   }
-  .sideBarNav__nav {
-    width: 22rem;
-    right: 2rem;
+  main h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
   }
-  .sideBarNav__nav ul li button {
-    font-size: 2rem;
+  main h2 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  .leftColumn {
+    width: 100%;
+    padding-bottom: 2rem;
+    padding-left: 0;
+    justify-content: center;
+    height: auto;
+  }
+  .rightColumn {
+    width: 100%;
+    height: auto;
+    padding-top: 0rem;
+  }
+  main .firstPage,
+  main .secondPage,
+  main .thirdPage,
+  main .projects,
+  main .fifthPage {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding-top: 5rem;
+    padding-left: 2rem;
+    flex-direction: column;
+  }
+  main .firstPage {
+    height: 90vh;
+    min-height: fit-content;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    padding-top: 10%;
+    padding-bottom: 8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: 0;
+  }
+
+  main .secondPage {
+    padding-top: 15rem;
+  }
+
+  main .secondPage p {
+    width: 90%;
+    font-size: 1.8rem;
+    letter-spacing: 0.05rem;
+    margin-left: 0;
+    line-height: 3rem;
+    margin-top: 1rem;
+  }
+
+  main .projects {
+    width: 90%;
+    height: auto;
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  main .thirdPage ul {
+    width: 90%;
+    padding-left: 0;
+    padding-top: 6rem;
+    column-gap: 1rem;
+    row-gap: 1rem;
+  }
+  main .thirdPage ul li {
+    width: 16rem;
+    font-size: 1.6rem;
+    padding: 1.5rem;
+  }
+  .project-card {
+    width: 100%;
+    height: 28rem;
+    max-width: 35rem;
+    padding: 2rem 0rem;
+    align-items: center;
+  }
+  .project-card__imageContainer {
+    width: 7rem;
+    height: 4rem;
+    position: absolute;
+  }
+  .project-card__imageContainerShadow {
+    position: absolute;
+    width: 5.2rem;
+    height: 3.3rem;
+    top: 13.9%;
+  }
+  .project-card__image {
+    position: absolute;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  main .projects .project-card__title {
+    font-size: 2.4rem;
+    margin-top: 0.5rem;
+  }
+
+  main .projects .project-card__description {
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  main .projects p {
+    width: 90%;
+    font-size: 1.8rem;
+    line-height: 3rem;
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+
+  main .projects .project-card__actionButton {
+    font-size: 1.6rem;
+    padding: 0.8rem 1.6rem;
+  }
+
+  main .projects .project-card__title {
+    padding-top: 6rem;
+  }
+
+  main .firstPage .landing-actions {
+    width: 100%;
+    flex-direction: row;
+    column-gap: 2rem;
+  }
+
+  main .firstPage .landing-actions__button-primary,
+  main .firstPage .landing-actions__button-secondary {
+    width: 100%;
+    font-size: 2.2rem;
+    padding: 1.6rem 1rem;
+    text-align: center;
+  }
+
+  main .fifthPage p {
+    width: 90%;
+    font-size: 1.8rem;
+    line-height: 3rem;
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+
+  footer {
+    padding: 2rem 1rem;
+    font-size: 1.6rem;
+  }
+
+  footer p {
+    font-size: 1.6rem;
   }
 }
