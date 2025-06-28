@@ -70,11 +70,10 @@ main {
 }
 
 .leftColumn {
-  height: 95rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-top: 32.4rem;
+  justify-content: center;
 }
 
 .rightColumn {
@@ -223,7 +222,7 @@ main .me {
 
 main .firstPage {
   width: 90%;
-  height: 100vh;
+  height: calc(100vh - 7.4rem);
   display: flex;
   justify-content: space-between;
 }
@@ -234,29 +233,35 @@ main .firstPage p {
 
 main .secondPage {
   width: 90%;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  padding-top: 14rem;
+  padding-top: 9rem;
+  padding-bottom: 8rem;
+  margin-bottom: 4rem;
 }
 
 main .thirdPage {
   width: 100%;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 12rem;
+  padding-top: 9rem;
+  padding-bottom: 8rem;
+  margin-bottom: 4rem;
 }
 
 main .thirdPage ul {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   column-gap: 6rem;
   row-gap: 6rem;
   padding-left: 2rem;
-  padding-top: 15rem;
+  padding-top: 9rem;
 }
 
 main .thirdPage ul li {
@@ -295,18 +300,23 @@ main .secondPage p {
 
 main .projects {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding-top: 9rem;
+  padding-bottom: 0rem;
+  margin-bottom: 2rem;
 }
 
 main .fifthPage {
   width: 100%;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 9rem;
+  padding-bottom: 8rem;
+  margin-bottom: 4rem;
 }
 
 main .fifthPage p {
@@ -319,20 +329,21 @@ main .fifthPage p {
 }
 
 footer {
+  width: calc(100% - 1rem);
   box-shadow: 0 4px 40px 0px rgba(0, 0, 0, 0.1);
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.1) 0%,
     rgba(0, 0, 0, 0.05) 100%
   );
-  padding: 4rem 2rem 2rem 2rem;
+  padding: 2rem 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-top: 1px solid #f9f9f6ca;
   font-family: "Georgia", serif;
   p {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
   }
 }
 
@@ -349,8 +360,8 @@ main .projects p {
   font-size: 2.8rem;
   color: white;
   font-family: "Georgia", serif;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
   margin-left: 3rem;
 }
 
@@ -594,15 +605,44 @@ main .projects .project-card__actionButton {
   main .projects,
   main .fifthPage {
     width: 100%;
-    min-height: calc(100vh - 7.4rem);
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     padding-top: 10rem;
+    padding-bottom: 5rem;
     flex-direction: column;
   }
   main .firstPage {
-    height: calc(100vh - 7.4rem);
+    height: auto;
+    min-height: 100vh;
     flex-direction: column-reverse;
-    padding-top: 0rem;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    gap: 2rem;
+    overflow: visible;
+  }
+  main .firstPage .leftColumn {
+    order: 2;
+    padding-bottom: 3rem;
+  }
+  main .firstPage .rightColumn {
+    order: 1;
+    padding-top: 1rem;
+  }
+  main .firstPage .landing-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  main .firstPage .landing-actions__button-primary,
+  main .firstPage .landing-actions__button-secondary {
+    width: 100%;
+    font-size: 2rem;
+    padding: 1.4rem 1rem;
+    text-align: center;
+    border-radius: 3rem;
   }
   main .projects {
     height: 100%;
@@ -644,194 +684,340 @@ main .projects .project-card__actionButton {
     font-size: 1.6rem;
     padding: 0.8rem 1.3rem;
   }
+  main .secondPage {
+    padding-top: 15rem;
+    margin-top: 5rem;
+  }
+  main .thirdPage {
+    padding-top: 15rem;
+    margin-top: 5rem;
+  }
+  main .projects {
+    height: auto;
+    flex-wrap: wrap;
+    padding-top: 15rem;
+    margin-top: 5rem;
+  }
+  main .fifthPage {
+    padding-top: 15rem;
+    margin-top: 5rem;
+  }
 }
 
 @media (max-width: 600px) {
-  main {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  html {
+    font-size: 52%; /* 1rem = 8.32px para mejor legibilidad en móviles */
   }
+
+  body {
+    overflow-x: hidden; /* Prevenir scroll horizontal */
+  }
+
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0; /* Remover padding top ya que header no es fijo */
+  }
+
   header {
     position: static;
-    padding: 0.5rem 0.5rem;
+    padding: 1rem;
+    box-shadow: none;
+    height: auto;
   }
+
   .header__logo {
-    font-size: 4rem;
-    margin-left: 1rem;
-    margin-top: 1rem;
+    font-size: 3.5rem;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
   }
+
   .sideBarNav__nav {
     display: none;
   }
+
   .welcome-1,
   .welcome-3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
+
   .welcome-2 {
-    font-size: 5rem;
-    line-height: 6rem;
-    width: 70%;
+    font-size: 4.5rem;
+    line-height: 5.5rem;
+    width: 100%;
   }
+
   main .me {
-    width: 30rem;
-    height: 30rem;
+    width: 25rem;
+    height: 25rem;
   }
+
   main h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
   }
+
   main h2 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
   }
+
   .leftColumn {
     width: 100%;
     padding-bottom: 2rem;
     padding-left: 0;
     justify-content: center;
     height: auto;
+    align-items: center;
   }
+
   .rightColumn {
     width: 100%;
     height: auto;
-    padding-top: 0rem;
+    padding-top: 2rem;
+    align-items: center;
   }
+
   main .firstPage,
   main .secondPage,
   main .thirdPage,
   main .projects,
   main .fifthPage {
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    padding-top: 5rem;
-    padding-left: 2rem;
-    flex-direction: column;
-  }
-  main .firstPage {
-    height: 90vh;
-    min-height: fit-content;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    padding-top: 10%;
-    padding-bottom: 8rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-left: 0;
-  }
-
-  main .secondPage {
-    padding-top: 15rem;
-  }
-
-  main .secondPage p {
-    width: 90%;
-    font-size: 1.8rem;
-    letter-spacing: 0.05rem;
-    margin-left: 0;
-    line-height: 3rem;
-    margin-top: 1rem;
-  }
-
-  main .projects {
-    width: 90%;
     height: auto;
-    flex-wrap: wrap;
-    margin-left: 0;
+    min-height: 100vh;
+    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    overflow: hidden; /* Prevenir overflow */
   }
 
-  main .thirdPage ul {
-    width: 90%;
-    padding-left: 0;
-    padding-top: 6rem;
-    column-gap: 1rem;
-    row-gap: 1rem;
-  }
-  main .thirdPage ul li {
-    width: 16rem;
-    font-size: 1.6rem;
-    padding: 1.5rem;
-  }
-  .project-card {
-    width: 100%;
-    height: 28rem;
-    max-width: 35rem;
-    padding: 2rem 0rem;
-    align-items: center;
-  }
-  .project-card__imageContainer {
-    width: 7rem;
-    height: 4rem;
-    position: absolute;
-  }
-  .project-card__imageContainerShadow {
-    position: absolute;
-    width: 5.2rem;
-    height: 3.3rem;
-    top: 13.9%;
-  }
-  .project-card__image {
-    position: absolute;
-    width: 3.5rem;
-    height: 3.5rem;
+  main .firstPage {
+    height: calc(100vh - 7.4rem);
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    padding-top: 0rem;
+    overflow: visible;
   }
 
-  main .projects .project-card__title {
-    font-size: 2.4rem;
-    margin-top: 0.5rem;
+  main .firstPage .leftColumn {
+    padding-bottom: 3rem;
   }
 
-  main .projects .project-card__description {
-    font-size: 1.4rem;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
-
-  main .projects p {
-    width: 90%;
-    font-size: 1.8rem;
-    line-height: 3rem;
-    margin-left: 0;
-    margin-top: 2rem;
-  }
-
-  main .projects .project-card__actionButton {
-    font-size: 1.6rem;
-    padding: 0.8rem 1.6rem;
-  }
-
-  main .projects .project-card__title {
-    padding-top: 6rem;
+  main .firstPage .rightColumn {
+    margin-bottom: 14rem;
   }
 
   main .firstPage .landing-actions {
     width: 100%;
-    flex-direction: row;
-    column-gap: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    margin-top: 2rem;
   }
 
   main .firstPage .landing-actions__button-primary,
   main .firstPage .landing-actions__button-secondary {
     width: 100%;
-    font-size: 2.2rem;
-    padding: 1.6rem 1rem;
+    font-size: 2rem;
+    padding: 1.4rem 1rem;
     text-align: center;
+    border-radius: 3rem;
+  }
+
+  main .secondPage {
+    padding-top: 4rem;
+    min-height: 100vh;
+  }
+
+  main .secondPage p {
+    width: 100%;
+    font-size: 1.6rem;
+    letter-spacing: 0.05rem;
+    margin-left: 0;
+    line-height: 2.8rem;
+    margin-top: 1rem;
+  }
+
+  main .projects {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    margin-left: 0;
+    gap: 2rem;
+    min-height: 100vh;
+  }
+
+  main .thirdPage ul {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 4rem;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    justify-content: center;
+  }
+
+  main .thirdPage ul li {
+    width: 14rem;
+    font-size: 1.4rem;
+    padding: 1.2rem;
+    min-height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-card {
+    width: 100%;
+    height: auto;
+    min-height: 25rem;
+    max-width: none;
+    padding: 2rem 1rem;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .project-card__imageContainer {
+    width: 6rem;
+    height: 3.5rem;
+    position: relative;
+  }
+
+  .project-card__imageContainerShadow {
+    position: absolute;
+    width: 4.5rem;
+    height: 2.8rem;
+    top: 15%;
+  }
+
+  .project-card__image {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  main .projects .project-card__title {
+    font-size: 2.2rem;
+    margin-top: 0.5rem;
+    padding-top: 4rem;
+  }
+
+  main .projects .project-card__description {
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  main .projects p {
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+
+  main .projects .project-card__actionButton {
+    font-size: 1.4rem;
+    padding: 0.8rem 1.4rem;
+    margin-top: 1rem;
   }
 
   main .fifthPage p {
-    width: 90%;
-    font-size: 1.8rem;
-    line-height: 3rem;
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
     margin-left: 0;
     margin-top: 2rem;
   }
 
   footer {
     padding: 2rem 1rem;
-    font-size: 1.6rem;
+    text-align: center;
   }
 
   footer p {
+    font-size: 1.4rem;
+  }
+}
+
+/* Nuevo breakpoint para pantallas muy pequeñas */
+@media (max-width: 400px) {
+  html {
+    font-size: 48%; /* 1rem = 7.68px */
+  }
+
+  main {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .header__logo {
+    font-size: 3rem;
+  }
+
+  .welcome-1,
+  .welcome-3 {
     font-size: 1.6rem;
+  }
+
+  .welcome-2 {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+
+  main .me {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  main h1 {
+    font-size: 3rem;
+  }
+
+  main h2 {
+    font-size: 2.5rem;
+  }
+
+  main .firstPage,
+  main .secondPage,
+  main .thirdPage,
+  main .projects,
+  main .fifthPage {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  main .thirdPage ul li {
+    width: 12rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+    min-height: 6rem;
+  }
+
+  .project-card {
+    padding: 1.5rem 0.5rem;
+  }
+
+  main .projects .project-card__title {
+    font-size: 2rem;
+  }
+
+  main .projects .project-card__description {
+    font-size: 1.2rem;
+  }
+
+  main .firstPage .landing-actions__button-primary,
+  main .firstPage .landing-actions__button-secondary {
+    font-size: 1.8rem;
+    padding: 1.2rem 0.8rem;
+  }
+
+  main .secondPage p,
+  main .projects p,
+  main .fifthPage p {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
   }
 }
