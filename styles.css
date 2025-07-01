@@ -879,28 +879,28 @@ main .projects .project-card__actionButton {
   }
 
   .project-card__imageContainer {
-    width: 6rem;
-    height: 3.5rem;
+    width: 12rem;
+    height: 8rem;
     position: relative;
   }
 
   .project-card__imageContainerShadow {
     position: absolute;
-    width: 5.2rem;
-    height: 3.5rem;
-    top: 17%;
+    width: 9rem;
+    height: 6rem;
+    top: 19.5%;
   }
 
   .project-card__image {
     position: absolute;
-    width: 3rem;
-    height: 3rem;
+    width: 6.5rem;
+    height: 6rem;
   }
 
   main .projects .project-card__title {
     font-size: 2.2rem;
     margin-top: 0.5rem;
-    padding-top: 4rem;
+    padding-top: 1rem;
   }
 
   main .projects .project-card__description {
@@ -916,6 +916,10 @@ main .projects .project-card__actionButton {
     line-height: 2.8rem;
     margin-left: 0;
     margin-top: 2rem;
+  }
+
+  main .projects ul {
+    margin: 1rem 0 1rem 0rem;
   }
 
   main .projects .project-card__actionButton {
