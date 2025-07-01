@@ -886,9 +886,9 @@ main .projects .project-card__actionButton {
 
   .project-card__imageContainerShadow {
     position: absolute;
-    width: 4.5rem;
-    height: 2.8rem;
-    top: 15%;
+    width: 5.2rem;
+    height: 3.5rem;
+    top: 17%;
   }
 
   .project-card__image {
