@@ -289,7 +289,6 @@ main .thirdPage ul li:hover {
 
 main .secondPage p {
   animation: appear ease-in-out 1s;
-
   line-height: 7.2rem;
   letter-spacing: 0.1rem;
   font-size: 2.8rem;
@@ -301,6 +300,7 @@ main .secondPage p {
 main .projects {
   width: 100%;
   height: 100%;
+  min-height: calc(100vh - 7.4rem);
   display: flex;
   flex-direction: column;
   padding-top: 9rem;
@@ -405,7 +405,7 @@ main .projects p {
 }
 
 .project-card__image {
-  width: 10rem;
+  width: 100%;
   height: 10rem;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -833,10 +833,10 @@ main .projects .project-card__actionButton {
 
   main .secondPage p {
     width: 100%;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     letter-spacing: 0.05rem;
     margin-left: 0;
-    line-height: 2.8rem;
+    line-height: 3rem;
     margin-top: 1rem;
   }
 
@@ -859,10 +859,10 @@ main .projects .project-card__actionButton {
   }
 
   main .thirdPage ul li {
-    width: 14rem;
-    font-size: 1.4rem;
+    width: 12rem;
+    font-size: 1.8rem;
     padding: 1.2rem;
-    min-height: 8rem;
+    min-height: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -888,23 +888,23 @@ main .projects .project-card__actionButton {
     position: absolute;
     width: 9rem;
     height: 6rem;
-    top: 19.5%;
+    top: 19.2%;
   }
 
   .project-card__image {
     position: absolute;
-    width: 6.5rem;
+    width: 100%;
     height: 6rem;
   }
 
   main .projects .project-card__title {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
     margin-top: 0.5rem;
     padding-top: 1rem;
   }
 
   main .projects .project-card__description {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-top: 0.5rem;
     text-align: center;
     line-height: 1.6;
@@ -912,8 +912,8 @@ main .projects .project-card__actionButton {
 
   main .projects p {
     width: 100%;
-    font-size: 1.6rem;
-    line-height: 2.8rem;
+    font-size: 1.8rem;
+    line-height: 3rem;
     margin-left: 0;
     margin-top: 2rem;
   }
@@ -981,7 +981,7 @@ main .projects .project-card__actionButton {
   }
 
   main h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   main .firstPage,
@@ -995,7 +995,7 @@ main .projects .project-card__actionButton {
 
   main .thirdPage ul li {
     width: 12rem;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     padding: 1rem;
     min-height: 6rem;
   }
@@ -1005,11 +1005,11 @@ main .projects .project-card__actionButton {
   }
 
   main .projects .project-card__title {
-    font-size: 2rem;
+    font-size: 2.6rem;
   }
 
   main .projects .project-card__description {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   main .firstPage .landing-actions__button-primary,
@@ -1021,7 +1021,7 @@ main .projects .project-card__actionButton {
   main .secondPage p,
   main .projects p,
   main .fifthPage p {
-    font-size: 1.4rem;
-    line-height: 2.4rem;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
   }
 }
