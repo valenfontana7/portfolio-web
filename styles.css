@@ -547,6 +547,85 @@ main .projects .project-card__actionButton {
   }
 }
 
+@media (max-width: 1440px) {
+  html {
+    font-size: 50%; /* 1rem = 8px */
+  }
+  main {
+    padding-right: 20rem;
+    padding-left: 8rem;
+  }
+  main .me {
+    width: 50rem;
+    height: 50rem;
+  }
+  .welcome-2 {
+    font-size: 5.5rem;
+    line-height: 8rem;
+  }
+  main h1 {
+    font-size: 4.2rem;
+  }
+  main h2 {
+    font-size: 3.2rem;
+  }
+  .sideBarNav__nav {
+    right: 3rem;
+  }
+  .sideBarNav__nav ul {
+    width: 18rem;
+    height: 46rem;
+  }
+  .sideBarNav__nav ul li button {
+    font-size: 2.4rem;
+  }
+  main .secondPage p {
+    font-size: 2rem;
+    line-height: 4.2rem;
+    margin-top: 0.5rem;
+  }
+  main .thirdPage ul li {
+    width: 13rem;
+    font-size: 2rem;
+    padding: 1.5rem;
+  }
+  .project-card {
+    width: 34rem;
+    height: 38rem;
+    padding: 2rem 1rem;
+  }
+  .project-card__imageContainer {
+    width: 12rem;
+    height: 8rem;
+  }
+  .project-card__imageContainerShadow {
+    left: 50%;
+    top: 15%;
+    width: 9rem;
+    height: 6rem;
+  }
+  .project-card__image {
+    width: 6rem;
+    height: 6rem;
+  }
+  main .projects .project-card__title {
+    font-size: 2.2rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }
+  main .projects .project-card__description {
+    font-size: 1.6rem;
+    margin-top: 0.8rem;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .project-card__actionButton {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+  }
+}
+
 @media (max-width: 1024px) {
   html {
     font-size: 50%; /* 1rem = 8px */
