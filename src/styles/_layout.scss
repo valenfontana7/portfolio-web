@@ -1,0 +1,1254 @@
+@use 'variables' as v;
+
+/* Altura del header usada para offsets de scroll */
+:root {
+  --header-height: 64px; /* coincide con header.header height */
+}
+
+/* Mejorar navegación por anclas: reservar espacio para el header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+/* Layout: header, hero, main grid */
+
+.header--hide-transition {
+  transition: transform 0.3s ease;
+}
+.header--hidden {
+  transform: translateY(-100%);
+}
+
+header {
+  width: 100%;
+  padding: 1rem 1.8rem;
+  display: flex;
+  justify-content: flex-start;
+  position: fixed;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60; /* asegurar que esté sobre el hero */
+}
+
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  z-index: 40;
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header__logo {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Estilos legacy para el logo/encabezado (migrados desde styles.css) */
+.header__logo {
+  color: white;
+  font-size: 3.4rem;
+  font-weight: 300;
+  font-family: v.$font-display;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Tipografía y layout de la sección "Sobre mí" */
+/* Tipografía y layout de la sección "Sobre mí" */
+#sobre-mi.secondPage {
+  /* Sección contenedor: ocupa el viewport disponible y centra la card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Preferir svh cuando esté disponible para evitar dependencias en JS
+    que actualizan --vh durante scroll (causa de shifts en iOS). Si el
+    navegador no soporta svh, caeremos al fallback calculado por JS. */
+  min-height: 100svh;
+  min-height: calc(var(--vh, 1vh) * 100 - var(--header-height));
+  padding: 4rem 0; /* espacio vertical para respirar */
+}
+
+.secondPage__inner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.secondPage__card {
+  max-width: 78ch;
+  width: min(78ch, 70%);
+  padding: clamp(1.6rem, 3.4vw, 2.8rem);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.45);
+  position: relative;
+}
+
+.secondPage__card .secondPage__body p {
+  margin: 0;
+}
+
+/* Asegurar que al navegar por ancla la sección deje espacio para el header
+   y muestre los bordes/acento lateral en pantalla */
+#sobre-mi.secondPage {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+/* Nota: limitación de altura aplicada solo en breakpoints móviles más abajo */
+
+#sobre-mi.secondPage::before {
+  /* barra de acento lateral sutil */
+  content: '';
+  position: absolute;
+  left: 0.8rem;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  width: 6px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, v.$color-accent, mix(v.$color-accent, #000, 20%));
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+#sobre-mi.secondPage h2 {
+  margin-bottom: 1.8rem;
+  font-size: clamp(2.2rem, 4.4vw, 3rem);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+#sobre-mi.secondPage p {
+  font-size: clamp(1.45rem, 2.8vw, 1.8rem);
+  line-height: 1.6;
+  letter-spacing: 0.01rem;
+  color: #e6eef0;
+  max-width: 80ch;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Ajustes responsivos para dispositivos más pequeños */
+@media (max-width: 900px) {
+  #sobre-mi.secondPage {
+    padding: clamp(2rem, 6vw, 3.6rem);
+    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.35);
+    border-radius: 10px;
+    /* Limitar altura en tablets y menores. Preferimos svh/vh en lugar de
+     depender de la variable --vh que puede cambiar durante scroll. */
+    max-height: min(80svh, 80vh);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  #sobre-mi.secondPage::before {
+    left: 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #sobre-mi.secondPage {
+    padding: clamp(1.6rem, 6vw, 2.6rem) !important;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0.6rem;
+    /* En mobile no permitimos scroll interno: la sección debe crecer y desplazar la página */
+    max-height: none !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: auto;
+  }
+  #sobre-mi.secondPage::before {
+    display: none;
+  }
+  #sobre-mi.secondPage h2 {
+    font-size: clamp(1.9rem, 5.2vw, 2.4rem) !important;
+  }
+  #sobre-mi.secondPage p {
+    font-size: clamp(1.35rem, 4vw, 1.6rem) !important;
+  }
+
+  /* Card más ancha en móviles para aprovechar el espacio */
+  .secondPage__card {
+    width: calc(100% - 2rem) !important;
+    max-width: none !important;
+    padding: clamp(1.2rem, 4vw, 1.8rem) !important;
+  }
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  grid-template-areas: 'content visual';
+  align-items: center;
+  gap: 4rem;
+}
+/* Hero como firstPage (pantalla inicial):
+   Objetivos:
+   1. Cubrir siempre el primer fold (que no se vea la segunda sección al cargar).
+   2. Evitar saltos bruscos en iOS Safari (barra dinámica) mientras permitimos expansión si el contenido supera el viewport.
+   Estrategia:
+   - Usamos height:100vh como garantía visual inicial.
+   - Encadenamos min-height con unidades modernas (svh/dvh) y finalmente la variable --vh (calculada vía JS) para mayor precisión.
+   - Si el contenido supera el viewport, se expandirá (porque min-height no limita el crecimiento).
+*/
+.hero.firstPage {
+  /* No usamos height fijo para evitar clipping en iOS; solo min-height dinámico */
+  min-height: 100vh; /* fallback base */
+  min-height: calc(var(--vh, 1vh) * 100); /* dinámico (JS) */
+  overflow: visible;
+  padding-bottom: max(2.4rem, env(safe-area-inset-bottom, 0) + 1.6rem);
+}
+
+/* Safari iOS a veces interpreta 100vh incluyendo barra oculta -> añadimos un ajuste mínimo
+   usando una propiedad custom que podríamos recalcular si es necesario. */
+@supports (-webkit-touch-callout: none) {
+  .hero.firstPage {
+    /* Ajuste adicional específico iOS: añadir espacio por barra inferior cuando visible */
+    padding-bottom: max(3rem, env(safe-area-inset-bottom, 0) + 2rem);
+  }
+}
+.hero {
+  min-height: 70vh;
+  padding: 6rem 0; /* valor heredado para mantener relación visual con el original */
+}
+.hero__content {
+  grid-area: content;
+  max-width: 720px; /* coincide con valor previo */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero__visual {
+  grid-area: visual;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero__visual .me {
+  width: clamp(18rem, 22vw, 32rem);
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.hero__title {
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  line-height: 1.02;
+  margin: 0 0 0.5rem;
+}
+
+.hero__kicker {
+  font-size: 1.1rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: #c5d6c2;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25; /* aumentar legibilidad */
+}
+
+/* Forzar salto en dos líneas en móviles: primera parte y segunda parte */
+.hero__kicker .kicker-line {
+  display: inline;
+}
+.hero__kicker .kicker-line--break {
+  margin-left: 0.4rem;
+}
+@media (max-width: 600px) {
+  .hero__kicker {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    line-height: 1.3;
+    text-align: right; /* alinear a la derecha en mobile */
+  }
+  .hero__kicker .kicker-line {
+    display: block;
+    margin: 0 0 0.25rem 0; /* separación entre líneas */
+    line-height: 1.3; /* un poco más suelto en mobile */
+    text-align: right;
+  }
+  .hero__kicker .kicker-line--break {
+    margin-left: 0; /* override para mobile */
+  }
+}
+.highlight {
+  color: v.$color-accent;
+}
+.welcome-1 {
+  font-size: v.$fs-hero-1;
+  line-height: 1.16;
+  margin-bottom: 1.4rem;
+  font-weight: 400;
+}
+.welcome-2 {
+  font-size: v.$fs-hero-2;
+  line-height: 1.28;
+  font-weight: 300;
+  margin-bottom: 1.3rem;
+  width: 100%;
+}
+.welcome-3 {
+  font-size: v.$fs-hero-3;
+  line-height: 1.38;
+  margin-bottom: 2.2rem;
+  font-weight: 300;
+}
+.hero__lead {
+  color: v.$legacy-muted;
+  margin: 0 0 1.25rem;
+}
+.hero {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+}
+.hero__content > * + * {
+  margin-top: 0.4rem;
+}
+.hero-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  margin: 2rem 0 1.6rem;
+}
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 10rem;
+}
+.metric__value {
+  font-size: clamp(1.8rem, 1.6vw + 0.8rem, 2.4rem);
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.05;
+}
+.metric__label {
+  font-size: 1.05rem;
+  color: #d6e2d3;
+  letter-spacing: 0.09rem;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* Secciones principales: firstPage, secondPage, thirdPage y projects (migradas desde styles.css) */
+/* LEGACY: antes firstPage definía un layout flex horizontal. Se elimina para permitir
+   que .hero (grid) controle la disposición y permita apilar en mobile. */
+main .firstPage {
+  /* Ajuste de dimensión: dejamos solo alturas responsivas; el ancho lo gestiona el padding global */
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100 - 7.4rem);
+  min-height: calc(100vh - 7.4rem);
+  /* display / justify-content removidos para no sobrescribir el grid de .hero */
+}
+
+main .firstPage p {
+  animation: appear ease-in-out 1s;
+}
+
+main .secondPage {
+  width: 90%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding-top: 9rem;
+  padding-bottom: 8rem;
+  margin-bottom: 4rem;
+}
+
+main .thirdPage {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 9rem;
+  padding-bottom: 8rem;
+  margin-bottom: 4rem;
+}
+
+main .thirdPage ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: 6rem;
+  row-gap: 6rem;
+  padding-left: 2rem;
+  padding-top: 9rem;
+}
+
+main .thirdPage ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26rem;
+  list-style: none;
+  color: white;
+  font-family: v.$font-display;
+  margin-bottom: 1rem;
+  border: 1px solid #f9f9f6ca;
+  border-radius: 1rem;
+  padding: 3.5rem;
+  user-select: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+main .thirdPage ul li:hover {
+  background-color: #f9f9f6ca;
+  color: #3b4c3a;
+  transform: scale(1.1);
+}
+
+main .secondPage p {
+  animation: appear ease-in-out 1s;
+  line-height: 7.2rem;
+  letter-spacing: 0.1rem;
+  font-size: 2.8rem;
+  font-weight: 300;
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+
+main .projects {
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 7.4rem);
+  display: flex;
+  flex-direction: column;
+  padding-top: 9rem;
+  padding-bottom: 0rem;
+  margin-bottom: 2rem;
+}
+main .projects p {
+  animation: appear ease-in-out 1s;
+  font-size: v.$fs-lg;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Georgia', serif;
+  line-height: 1.55;
+  letter-spacing: 0.02rem;
+  max-width: 100ch;
+  color: white;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  font-size: 1.4rem;
+  color: #94a3b8;
+  max-width: 72ch;
+  line-height: 1.5;
+}
+
+/* Sidebar navigation lateral - diseño más amigable y accesible */
+.sideBarNav__nav {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  right: 10rem;
+  padding-top: 10rem;
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.sideBarNav {
+  position: fixed;
+  right: 16px;
+  top: calc(50% - 10rem);
+  transform: translateY(calc(50% - 10rem));
+  --sidebar-width: 21.2rem; /* ancho por defecto: aumentado para mejor legibilidad */
+  --sidebar-collapsed-width: 6.2rem; /* ancho cuando está colapsada (solo íconos) */
+  --sidebar-item-height: 4.6rem; /* altura objetivo por item */
+  --sidebar-transition: 220ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+/* En pantallas pequeñas preferimos la posición con top fijo para evitar overlap con el header */
+@media (max-width: 900px) {
+  .sideBarNav {
+    top: 120px;
+    transform: none;
+  }
+}
+
+.sideBarNav__nav ul {
+  width: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.6rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.45);
+  position: relative; /* necesario para elementos decorativos */
+}
+
+.sideBarNav__nav--collapsed ul,
+.sideBarNav:not(:hover) .sideBarNav__nav ul {
+  width: var(--sidebar-collapsed-width) !important;
+  padding: 0.4rem !important;
+}
+
+.sideBarNav__nav--collapsed ul li .nav-item,
+.sideBarNav:not(:hover) .sideBarNav__nav ul li .nav-item {
+  justify-content: center;
+}
+
+.sideBarNav__nav--collapsed ul li button,
+.sideBarNav:not(:hover) .sideBarNav__nav ul li button {
+  padding: 0.6rem !important;
+  width: auto !important;
+  justify-content: center !important;
+}
+
+.sideBarNav__nav--collapsed ul li button .nav-label,
+.sideBarNav:not(:hover) .sideBarNav__nav ul li button .nav-label {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+  transform: translateX(-6px);
+  transition: opacity var(--sidebar-transition), transform var(--sidebar-transition),
+    width var(--sidebar-transition);
+}
+
+.sideBarNav__nav ul li button .nav-label {
+  transition: opacity var(--sidebar-transition), transform var(--sidebar-transition),
+    width var(--sidebar-transition);
+}
+
+/* When hovered (or not collapsed), expand to full width */
+.sideBarNav:hover .sideBarNav__nav ul,
+.sideBarNav:focus-within .sideBarNav__nav ul {
+  width: var(--sidebar-width) !important;
+  padding-left: 1rem !important;
+}
+
+.sideBarNav:hover .sideBarNav__nav ul li button .nav-label,
+.sideBarNav:focus-within .sideBarNav__nav ul li button .nav-label {
+  opacity: 1;
+  width: auto !important;
+  transform: translateX(0);
+}
+
+/* Smooth transition for the container to avoid jumpy behavior */
+.sideBarNav__nav ul {
+  transition: width var(--sidebar-transition), padding var(--sidebar-transition);
+  overflow: visible;
+}
+
+.sideBarNav__nav ul li {
+  list-style: none;
+}
+
+/* Estructura de item: permite icono + label alineados */
+.sideBarNav__nav ul li .nav-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: var(--icon-size, 4rem) 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.sideBarNav__nav ul li button {
+  width: 100% !important;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 2.8rem; /* aumentado para mejor legibilidad */
+  font-family: 'Georgia', serif; /* tipografía solicitada */
+  font-weight: 300; /* peso ligero solicitado */
+  border-radius: 10px;
+  text-align: left;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  /* ajuste para evitar que cada botón crezca demasiado en alto */
+  padding: 0.4rem 0.8rem;
+  min-height: var(--sidebar-item-height);
+  transition: transform 220ms ease, background 200ms ease, color 200ms ease, box-shadow 200ms ease;
+  cursor: pointer;
+}
+
+.sideBarNav__nav ul li button .icon {
+  width: 4rem; /* icono más grande */
+  height: 4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  color: inherit;
+  flex: 0 0 auto;
+}
+
+.sideBarNav__nav ul li button .nav-label {
+  display: inline-block;
+  font-size: 1.8rem; /* aumentado */
+  line-height: 1.05;
+  color: inherit;
+  font-weight: 300;
+  letter-spacing: 0.01rem;
+  font-family: 'Georgia', serif; /* tipografía lateral */
+  /* permitir que la etiqueta haga wrap y ocupe la columna restante */
+  white-space: normal;
+  word-break: break-word;
+  display: block;
+  /* limitar crecimiento vertical: permitir como máximo 2 líneas visibles */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sideBarNav__nav ul li button .icon svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+/* Barra vertical decorativa (sutil) detrás del menú */
+.sideBarNav__nav ul::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8%;
+  bottom: 8%;
+  width: 6px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(123, 200, 100, 0.14));
+  box-shadow: 0 8px 28px rgba(30, 30, 30, 0.45), inset 0 0 10px rgba(255, 255, 255, 0.02);
+  opacity: 0.12;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+/* Indicador activo: pequeño punto a la izquierda del item cuando está activo */
+.sideBarNav__nav ul li button::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, v.$color-accent, #ffd371);
+  box-shadow: 0 6px 18px rgba(123, 200, 100, 0.18);
+  opacity: 0;
+  transform: translateX(-6px) scale(0.8);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  margin-right: 0.4rem;
+}
+
+.sideBarNav__nav ul li button[aria-pressed='true']::after {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Efecto pulso y brillo en icono al hover/focus */
+.sideBarNav__nav ul li button .icon {
+  transition: transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 220ms ease,
+    background 180ms ease;
+}
+.sideBarNav__nav ul li button:hover .icon,
+.sideBarNav__nav ul li button:focus .icon {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(123, 200, 100, 0.12), 0 2px 6px rgba(0, 0, 0, 0.35) inset;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(123, 200, 100, 0.06));
+}
+
+.sideBarNav__nav ul li button:hover,
+.sideBarNav__nav ul li button:focus {
+  transform: translateX(-4px);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.06));
+  color: v.$color-accent;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.sideBarNav__nav ul li button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(123, 200, 100, 0.12), 0 10px 30px rgba(2, 6, 23, 0.4);
+}
+
+/* (Bloque responsive legacy eliminado; se unificó en los bloques consolidados más abajo) */
+
+/* Estado activo/seleccionado */
+.sideBarNav__nav ul li button[aria-pressed='true'] {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.09));
+  color: v.$color-accent;
+  font-weight: 500; /* estado activo más visible pero no tan pesado */
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1920px) {
+  html {
+    font-size: 56.25%;
+  }
+  main {
+    padding-right: 26rem;
+    padding-left: 12rem;
+  }
+  .hero {
+    gap: 3.2rem;
+  }
+  .hero__content {
+    max-width: 68rem;
+  }
+  .hero__visual .me {
+    width: clamp(20rem, 20vw, 30rem);
+  }
+  .metric__value {
+    font-size: clamp(1.9rem, 1.6vw + 0.8rem, 2.2rem);
+  }
+  .sideBarNav__nav {
+    right: 5rem;
+  }
+  .sideBarNav__nav ul {
+    /* mantener variable para consistencia */
+    width: calc(var(--sidebar-width) - 2rem);
+  }
+}
+
+@media (max-width: 1440px) {
+  html {
+    font-size: 50%;
+  }
+  main {
+    padding-right: 20rem;
+    padding-left: 8rem;
+  }
+  .sideBarNav__nav {
+    right: 3rem;
+  }
+  .sideBarNav__nav ul {
+    width: calc(var(--sidebar-width) - 4rem);
+    height: 46rem;
+  }
+  .sideBarNav__nav ul li button {
+    font-size: 1.8rem; /* ligero ajuste para pantallas medianas */
+  }
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 50%;
+  }
+  main {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  header {
+    position: static;
+  }
+  .header__logo {
+    font-size: 5.4rem;
+  }
+  .sideBarNav__nav {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 52%;
+  }
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0;
+  }
+  header {
+    position: static;
+    padding: 1rem;
+    box-shadow: none;
+    height: auto;
+  }
+  .header__logo {
+    font-size: 3.5rem;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .welcome-1,
+  .welcome-3 {
+    font-size: 1.8rem;
+  }
+  .hero__visual .me {
+    width: clamp(18rem, 58vw, 28rem);
+    box-shadow: 0 8px 26px -8px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(255, 255, 255, 0.05);
+    border: 3px solid rgba(255, 255, 255, 0.12);
+    margin-top: 1.2rem;
+  }
+
+  /* Aumentos tipográficos específicos para mobile */
+  /* Habilidades: título y texto explicativo */
+  .skills-section,
+  #habilidades,
+  #habilidades h2 {
+    font-size: clamp(2rem, 6vw, 2.4rem) !important;
+    line-height: 1.15 !important;
+  }
+  .skills-section .section-lead,
+  .skills-grid {
+    font-size: clamp(1.4rem, 3.6vw, 1.8rem) !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Proyectos: título y descripción */
+  .projects h2,
+  #titulo-proyectos {
+    font-size: clamp(2rem, 6.2vw, 2.6rem) !important;
+    line-height: 1.12 !important;
+  }
+  .projects p,
+  main .projects p {
+    font-size: clamp(1.4rem, 3.8vw, 1.8rem) !important;
+    line-height: 1.45 !important;
+  }
+
+  /* External link cards: aumentar legibilidad de título y subtítulo */
+  .external-link-card .elc-title {
+    font-size: 1.6rem !important;
+  }
+  .external-link-card .elc-sub {
+    font-size: 1.25rem !important;
+  }
+
+  /* Footer: mayor legibilidad en móvil */
+  footer {
+    font-size: 1.25rem !important;
+    padding: 2.4rem 0 !important;
+  }
+
+  /* Overrides muy específicos por si otras reglas más concretas las están anulando */
+  section.skills-section#habilidades > h2#titulo-habilidades,
+  section.skills-section#habilidades h2 {
+    font-size: 2.4rem !important;
+    line-height: 1.12 !important;
+  }
+  section.skills-section#habilidades .section-lead,
+  section.skills-section#habilidades p.section-lead {
+    font-size: 1.75rem !important;
+    line-height: 1.42 !important;
+  }
+  section.projects#proyectos > h2#titulo-proyectos,
+  section.projects#proyectos h2 {
+    font-size: 2.6rem !important;
+    line-height: 1.08 !important;
+  }
+  section.projects#proyectos > p.section-lead,
+  section.projects#proyectos p.section-lead {
+    font-size: 1.75rem !important;
+    line-height: 1.45 !important;
+  }
+  footer.footer .footer__legal > div,
+  footer.footer .footer__legal {
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 48%;
+  }
+  .header__logo {
+    font-size: 3rem;
+  }
+}
+
+footer {
+  padding: 3rem 0;
+  color: v.$legacy-muted;
+  text-align: center;
+}
+
+/* Sección contacto (fifthPage) */
+main .fifthPage {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 9rem;
+  padding-bottom: 8rem;
+  margin-bottom: 4rem;
+}
+main .fifthPage p {
+  animation: appear ease-in-out 1s;
+  font-size: v.$fs-lg;
+  line-height: 1.55;
+  letter-spacing: 0.02rem;
+  max-width: 100ch;
+  color: white;
+  margin-left: 3rem;
+  margin-top: 3rem;
+  font-weight: 300;
+}
+
+/* === External profile / repos link cards ("Más en GitHub" / "Perfil profesional") === */
+.projects-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  gap: 2rem;
+  margin-top: 3.2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0.4rem 0;
+}
+/* Versión sobria (menos sombras, acorde al resto) */
+.external-link-card {
+  --elc-accent: v.$color-accent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.15rem 1.5rem 1.15rem 1.3rem;
+  border-radius: 0.9rem;
+  text-decoration: none;
+  color: #f2f5f2;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: none;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.external-link-card:hover,
+.external-link-card:focus-visible {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.external-link-card:active {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03));
+}
+
+.external-link-card .elc-icon {
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  flex: 0 0 auto;
+  transition: background 180ms ease;
+}
+.external-link-card:hover .elc-icon,
+.external-link-card:focus-visible .elc-icon {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.external-link-card .elc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.external-link-card .elc-title {
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.external-link-card .elc-sub {
+  font-size: 1.2rem;
+  font-weight: 300;
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+}
+
+/* Lateral accent minimal */
+.external-link-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: v.$color-accent;
+  opacity: 0.55;
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+.external-link-card:hover::before,
+.external-link-card:focus-visible::before {
+  opacity: 0.85;
+  filter: brightness(1.1);
+}
+
+/* Variantes discretas */
+.external-link-card.github::before {
+  background: linear-gradient(180deg, #454b50, #2d3135);
+}
+.external-link-card.linkedin::before {
+  background: linear-gradient(180deg, #0a66c2, #0a66c233);
+}
+
+/* Accesibilidad foco */
+.external-link-card:focus-visible {
+  outline: 2px solid rgba(123, 200, 100, 0.45);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .external-link-card,
+  .external-link-card .elc-icon {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-links {
+    gap: 1.2rem;
+    grid-template-columns: 1fr;
+  }
+  .external-link-card {
+    padding: 1.05rem 1.3rem;
+  }
+  .external-link-card .elc-icon {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+  .external-link-card .elc-title {
+    font-size: 1.4rem;
+  }
+  .external-link-card .elc-sub {
+    font-size: 1.1rem;
+  }
+}
+
+/* Reintroducir layout principal y paddings heredados para evitar regresiones */
+main {
+  width: 100%;
+  /* Padding por defecto para mobile y tamaños intermedios. Los paddings grandes
+     se aplican solo en pantallas de escritorio mediante la media query siguiente. */
+  padding-left: var(--side-gap, 1rem);
+  padding-right: var(--side-gap, 1rem);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 901px) {
+  /* Paddings amplios para layout de escritorio (mantener compatibilidad con
+     el diseño previo, pero no afectan mobile). */
+  main {
+    padding-right: 55rem;
+    padding-left: 22rem;
+  }
+
+  /* Reservar espacio visual para la sección "Sobre mí" en desktop pero permitir
+     que crezca si el contenido lo requiere. */
+  #sobre-mi.secondPage {
+    min-height: 48vh !important;
+    padding: clamp(2.4rem, 5vw, 4rem);
+    /* No permitir que la sección muestre la siguiente sección al hacer anchor */
+    max-height: calc(var(--vh, 1vh) * 100 - var(--header-height) - 2rem) !important;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Clases legacy .leftColumn / .rightColumn eliminadas. Estructura gestionada con grid áreas */
+
+.landing-actions {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 3rem;
+  padding-top: 3rem;
+}
+
+/* Mobile global alignment helpers: asegurar que el contenido use casi todo el ancho
+   y tenga el mismo espacio a ambos lados en pantallas pequeñas. */
+@media (max-width: 900px) {
+  :root {
+    --side-gap: 1rem; /* espacio lateral coherente para pantallas <= 900px */
+  }
+
+  /* Aplicar padding lateral uniforme a las secciones principales */
+  header,
+  .hero,
+  main,
+  main .firstPage,
+  main .secondPage,
+  main .thirdPage,
+  main .projects {
+    padding-left: var(--side-gap) !important;
+    padding-right: var(--side-gap) !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Quitar márgenes laterales fijos heredados que provocaban desalineado */
+  main .secondPage p,
+  main .projects p,
+  main .secondPage h2 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Ocultar la barra lateral en pantallas pequeñas */
+  .sideBarNav,
+  .sideBarNav__nav {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Ajustes para el header/logo */
+  .header__inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .header__logo {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    font-size: clamp(2.2rem, 5.2vw, 3.2rem) !important;
+  }
+
+  /* Asegurar que el hero use el ancho disponible y su contenido se alinee centrado */
+  .hero {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      'content'
+      'visual';
+    gap: 1.6rem !important;
+    padding-top: 3.2rem !important;
+    padding-bottom: 2.4rem !important;
+  }
+  .hero__content {
+    max-width: none !important;
+    width: 100% !important;
+    order: 0;
+  }
+  .hero__visual {
+    order: 1;
+    margin-top: 1.4rem; /* separación moderada del texto */
+  }
+  .hero__visual .me {
+    width: clamp(20rem, 52vw, 30rem);
+    transition: width 0.3s ease;
+  }
+  /* En mobile dejamos que la sección tome la altura del contenido para evitar corte de la imagen en iOS (teclado / barras dinámicas) */
+  /* En mobile mantenemos la ocupación completa del fold; se centra mejor el contenido */
+  .hero.firstPage {
+    /* Mantener solo min-height para permitir expansión; centrado vertical controlado con padding */
+    min-height: calc(var(--vh, 1vh) * 100);
+    align-content: start;
+    padding-top: clamp(4rem, 10vh, 8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --side-gap: 0.8rem; /* espacio lateral ligeramente menor en phones muy pequeños */
+  }
+
+  header,
+  .hero,
+  main,
+  main .firstPage,
+  main .secondPage,
+  main .thirdPage,
+  main .projects {
+    padding-left: var(--side-gap) !important;
+    padding-right: var(--side-gap) !important;
+  }
+
+  /* Forzar que proyectos y listas usen el mismo gap lateral */
+  .projects-list {
+    margin-left: 0rem !important;
+    margin-right: 0rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Asegurar que textos y títulos no utilicen margenes extra */
+  main .secondPage p,
+  main .projects p {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* .rightColumn removida: el responsive del avatar se controla vía .hero__visual */
+
+  /* Ajustes tipográficos adicionales para phones pequeños (≤480px) */
+  /* Habilidades */
+  #titulo-habilidades,
+  #habilidades,
+  .skills-section h2 {
+    font-size: clamp(2.2rem, 7.2vw, 2.8rem) !important;
+    line-height: 1.08 !important;
+  }
+  .skills-section .section-lead,
+  .skills-grid {
+    font-size: clamp(1.5rem, 4.2vw, 1.9rem) !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Proyectos */
+  #titulo-proyectos,
+  .projects h2 {
+    font-size: clamp(2.2rem, 7vw, 2.9rem) !important;
+    line-height: 1.06 !important;
+  }
+  main .projects p,
+  .projects .section-lead {
+    font-size: clamp(1.5rem, 4vw, 1.9rem) !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Tarjetas externas */
+  .external-link-card .elc-title {
+    font-size: 1.75rem !important;
+  }
+  .external-link-card .elc-sub {
+    font-size: 1.35rem !important;
+  }
+
+  /* Footer */
+  footer {
+    font-size: 1.35rem !important;
+    padding: 2rem 0 !important;
+  }
+
+  /* Overrides extra para asegurar aplicación en phones muy pequeños */
+  section.skills-section#habilidades h2#titulo-habilidades,
+  section.skills-section#habilidades h2 {
+    font-size: 2.8rem !important;
+    line-height: 1.08 !important;
+  }
+  section.skills-section#habilidades .section-lead,
+  section.skills-section#habilidades p.section-lead {
+    font-size: 1.9rem !important;
+  }
+  section.projects#proyectos h2#titulo-proyectos,
+  section.projects#proyectos h2 {
+    font-size: 2.9rem !important;
+    line-height: 1.06 !important;
+  }
+  section.projects#proyectos p.section-lead,
+  section.projects#proyectos .section-lead {
+    font-size: 1.9rem !important;
+  }
+  footer.footer,
+  footer.footer .footer__legal,
+  footer.footer .footer__legal > div {
+    font-size: 1.4rem !important;
+    line-height: 1.35 !important;
+  }
+}

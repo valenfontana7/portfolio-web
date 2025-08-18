@@ -1,0 +1,38 @@
+[
+  {
+    "id": "stellar-shop",
+    "title": "Stellar Shop",
+    "description": "Tienda ficticia de productos espaciales con ficha de producto y pasarela simulada.",
+    "site": "https://example.com/stellar-shop",
+    "repo": "https://github.com/example/stellar-shop",
+    "img": "eiffel.png",
+    "tags": ["ecommerce", "ui"]
+  },
+  {
+    "id": "garden-notes",
+    "title": "Garden Notes",
+    "description": "Aplicación de notas para jardinería con filtrado por plantas y recordatorios.",
+    "site": "https://example.com/garden-notes",
+    "repo": "https://github.com/example/garden-notes",
+    "img": "me.png",
+    "tags": ["productivity", "ui"]
+  },
+  {
+    "id": "meow-gallery",
+    "title": "Meow Gallery",
+    "description": "Galería de imágenes (demo) con lazy-loading y efectos de transición.",
+    "site": "https://example.com/meow-gallery",
+    "repo": "https://github.com/example/meow-gallery",
+    "img": "cat.jpg",
+    "tags": ["experiments", "media"]
+  },
+  {
+    "id": "portfolio-kit",
+    "title": "Portfolio Kit",
+    "description": "Plantilla de portfolio modular, enfocada en rendimiento y accesibilidad.",
+    "site": "https://example.com/portfolio-kit",
+    "repo": "https://github.com/example/portfolio-kit",
+    "img": "harry-potter.jpeg",
+    "tags": ["ui", "accessibility"]
+  }
+]

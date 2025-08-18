@@ -1,0 +1,51 @@
+{
+  "name": "portfolio-web",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "eslint \"js/**/*.js\"",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "dev": "vite",
+    "dev:react": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5173",
+    "start": "serve -s dist || serve ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.1",
+    "live-server": "^1.2.2",
+    "prettier": "^2.8.8",
+    "sass": "^1.90.0",
+    "serve": "^14.2.0",
+    "vite": "^7.1.2",
+    "@vitejs/plugin-react": "^4.0.0"
+  },
+  "lint-staged": {
+    "*.{js,css,html,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valenfontana7/portfolio-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valenfontana7/portfolio-web/issues"
+  },
+  "homepage": "https://github.com/valenfontana7/portfolio-web#readme"
+}

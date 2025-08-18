@@ -4,37 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Valentin Fontana</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <!-- Load main stylesheet early to avoid flash of unstyled content (FOUC) -->
+    <link rel="stylesheet" href="/src/styles/main.scss" />
+    <!-- Minimal inline script to mark JS readiness as early as possible -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body>
-    <header>
-      <script>
-        let lastScrollTop = 0;
-        const header = document.querySelector("header");
-        window.addEventListener(
-          "scroll",
-          function () {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st > lastScrollTop && st > 50) {
-              // Scroll down
-              header.style.transform = "translateY(-100%)";
-              header.style.transition = "transform 0.3s";
-            } else {
-              // Scroll up
-              header.style.transform = "translateY(0)";
-              header.style.transition = "transform 0.3s";
-            }
-            lastScrollTop = st <= 0 ? 0 : st;
-          },
-          false
-        );
-      </script>
-      <h1
-        onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
-        class="header__logo"
-      >
-        Portfolio
-      </h1>
+    <!-- React root (mount point for the new React app; exists alongside the static content) -->
+    <div id="react-root" aria-hidden="true"></div>
+    <header role="banner">
+      <h1 class="header__logo" aria-label="Volver al inicio">Portfolio</h1>
       <!-- <img
         onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
         class="header__logo"
@@ -43,252 +24,295 @@
       /> -->
     </header>
     <main>
-      <nav class="sideBarNav__nav">
-        <ul>
-          <li>
-            <button
-              onclick="document.querySelector('.secondPage').scrollIntoView({ behavior: 'smooth' });"
-              type="button"
-            >
-              Sobre mí
+      <div class="sideBarNav">
+        <nav
+          class="sideBarNav__nav sideBarNav__nav--collapsed"
+          aria-label="Navegación principal lateral"
+        >
+          <ul>
+            <li>
+              <button data-scroll="#sobre-mi" type="button">
+                <span class="icon" aria-hidden="true">
+                  <!-- person icon -->
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z"
+                      fill="currentColor"
+                    />
+                    <path d="M4 20c0-4 4-6 8-6s8 2 8 6v1H4v-1z" fill="currentColor" />
+                  </svg>
+                </span>
+                <span class="nav-label">Sobre mí</span>
+              </button>
+            </li>
+            <li>
+              <button data-scroll="#habilidades" type="button">
+                <span class="icon" aria-hidden="true">
+                  <!-- gear/code icon -->
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M19.4 15a1 1 0 0 0 .2 1.1l.9.9a1 1 0 0 1-1.4 1.4l-.9-.9a1 1 0 0 0-1.1-.2 7.1 7.1 0 0 1-1.9.9 1 1 0 0 0-.6 1v1.3a1 1 0 0 1-2 0V18a1 1 0 0 0-.6-1 7.1 7.1 0 0 1-1.9-.9 1 1 0 0 0-1.1.2l-.9.9A1 1 0 0 1 3 17.9l.9-.9a1 1 0 0 0 .2-1.1 7.1 7.1 0 0 1-.9-1.9 1 1 0 0 0-1-0.6H1.9a1 1 0 0 1 0-2H4a1 1 0 0 0 1-0.6c.2-.7.5-1.4.9-1.9a1 1 0 0 0-.2-1.1L4.8 5.1A1 1 0 0 1 6.2 3.7l.9.9a1 1 0 0 0 1.1.2c.6-.3 1.3-.6 1.9-.9A1 1 0 0 0 12 4h1.3a1 1 0 0 1 0 2H12a1 1 0 0 0-1 .6c-.3.6-.6 1.3-.9 1.9a1 1 0 0 0 1.1.2l.9-.9A1 1 0 0 1 14.3 9l-.9.9a1 1 0 0 0-.2 1.1c.3.6.6 1.3.9 1.9a1 1 0 0 0 1 .6H20a1 1 0 0 1 0 2h-1.6a1 1 0 0 0-1 .6c-.2.7-.5 1.4-.9 1.9z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <span class="nav-label">Habilidades</span>
+              </button>
+            </li>
+            <li>
+              <button data-scroll="#proyectos" type="button">
+                <span class="icon" aria-hidden="true">
+                  <!-- folder icon -->
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 4H4a2 2 0 0 0-2 2v2h20V8a2 2 0 0 0-2-2h-8l-2-2z"
+                      fill="currentColor"
+                    />
+                    <path d="M2 10v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8H2z" fill="currentColor" />
+                  </svg>
+                </span>
+                <span class="nav-label">Proyectos</span>
+              </button>
+            </li>
+            <li>
+              <button data-scroll="#contacto" type="button">
+                <span class="icon" aria-hidden="true">
+                  <!-- mail icon -->
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <span class="nav-label">Contacto</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <section class="hero firstPage reveal" data-animate="fade-in">
+        <div class="hero__content">
+          <p class="hero__kicker">
+            <span class="kicker-line">Desarrollador Fullstack</span>
+            <span class="kicker-line kicker-line--break">enfocado en Frontend</span>
+          </p>
+          <h1 class="welcome-1">Hola, soy <span class="highlight">Valentín Fontana</span></h1>
+          <h2 class="welcome-2">
+            Diseño y construyo experiencias web claras, accesibles y eficientes.
+          </h2>
+          <p class="welcome-3">Vivo en Buenos Aires, colaborando en proyectos globales.</p>
+          <div class="hero-metrics"></div>
+          <div class="landing-actions hero__actions">
+            <button class="landing-actions__button-primary" data-scroll="#proyectos">
+              Ver proyectos
             </button>
-          </li>
-          <li>
-            <button
-              onclick="document.querySelector('.thirdPage').scrollIntoView({ behavior: 'smooth' });"
-              type="button"
-            >
-              Habilidades
-            </button>
-          </li>
-          <li>
-            <button
-              onclick="document.querySelector('.projects').scrollIntoView({ behavior: 'smooth' });"
-              type="button"
-            >
-              Proyectos
-            </button>
-          </li>
-          <li>
-            <button
-              onclick="document.querySelector('.fifthPage').scrollIntoView({ behavior: 'smooth' });"
-              type="button"
-            >
-              Contacto
-            </button>
-          </li>
-        </ul>
-      </nav>
-      <section class="firstPage">
-        <div class="leftColumn">
-          <div class="welcome-message">
-            <h1 class="welcome-1">Hola, soy Valentín Fontana</h1>
-            <h1 class="welcome-2">Desarrollador de Software</h1>
-            <p class="welcome-3">en Buenos Aires, Argentina.</p>
-          </div>
-          <div class="landing-actions">
-            <button
-              class="landing-actions__button-primary"
-              onclick="document.querySelector('.projects').scrollIntoView({ behavior: 'smooth' });"
-            >
-              Ver mi trabajo
-            </button>
-            <button
-              class="landing-actions__button-secondary"
-              onclick="document.querySelector('.fifthPage').scrollIntoView({ behavior: 'smooth' });"
-            >
-              Contactarme
+            <button class="landing-actions__button-secondary" data-scroll="#contacto">
+              Hablemos
             </button>
           </div>
         </div>
-        <div class="rightColumn">
-          <img class="me" src="me.png" alt="mi-foto" />
+        <div class="hero__visual">
+          <img class="me" src="me.png" alt="Foto de Valentín" />
         </div>
       </section>
-      <section class="secondPage">
-        <h2>Sobre mí</h2>
-        <p>
-          Soy un desarrollador de software con experiencia en creación de
-          aplicaciones y sitios web.
-          <br />
-          Cuento con experiencia fullstack, capaz de trabajar tanto en el
-          backend como en el frontend de una aplicación.
-          <br />
-          Desde 2020 me dedico profesionalmente al desarrollo, participando en
-          diversos proyectos que van desde soluciones a medida para empresas
-          hasta productos digitales orientados al usuario final.
-          <br />
-          Actualmente estoy enfocado en el desarrollo frontend, donde combino
-          funcionalidad y estética para crear interfaces limpias, atractivas y
-          eficientes.
-          <br />
+      <section
+        id="sobre-mi"
+        class="secondPage reveal"
+        data-animate="fade-up"
+        aria-labelledby="titulo-sobre-mi"
+      >
+        <div class="secondPage__inner">
+          <div class="secondPage__card" role="article" aria-labelledby="titulo-sobre-mi">
+            <h2 id="titulo-sobre-mi">Sobre mí</h2>
+            <div class="secondPage__body">
+              <p>
+                Soy un desarrollador de software con experiencia en creación de aplicaciones y
+                sitios web.
+                <br />
+                Cuento con experiencia fullstack, capaz de trabajar tanto en el backend como en el
+                frontend de una aplicación.
+                <br />
+                Desde 2020 me dedico profesionalmente al desarrollo, participando en diversos
+                proyectos que van desde soluciones a medida para empresas hasta productos digitales
+                orientados al usuario final.
+                <br />
+                Actualmente estoy enfocado en el desarrollo frontend, donde combino funcionalidad y
+                estética para crear interfaces limpias, atractivas y eficientes.
+                <br />
 
-          Apunto siempre a un diseño sobrio que potencie la experiencia del
-          usuario sin distraer de lo importante.
-          <br />
+                Apunto siempre a un diseño sobrio que potencie la experiencia del usuario sin
+                distraer de lo importante.
+                <br />
 
-          Estoy preparado para acompañar ideas desde su concepción hasta su
-          implementación, aportando soluciones sólidas y escalables.
+                Estoy preparado para acompañar ideas desde su concepción hasta su implementación,
+                aportando soluciones sólidas y escalables.
 
-          <br />
-          Ya sea que necesites desarrollar un producto desde cero o mejorar una
-          plataforma existente, puedo ayudarte a llevar tu proyecto al siguiente
-          nivel.
-        </p>
+                <br />
+                Ya sea que necesites desarrollar un producto desde cero o mejorar una plataforma
+                existente, puedo ayudarte a llevar tu proyecto al siguiente nivel.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="thirdPage">
-        <h2>Habilidades</h2>
-        <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>React</li>
-          <li>Node.js</li>
-          <li>Python</li>
-          <li>SQL</li>
-          <li>PostgreSQL</li>
-          <li>Git</li>
-          <li>GitHub</li>
+      <section
+        id="habilidades"
+        class="thirdPage reveal skills-section"
+        data-animate="fade-up"
+        aria-labelledby="titulo-habilidades"
+      >
+        <h2 id="titulo-habilidades">Habilidades</h2>
+        <p class="section-lead">Un stack equilibrado para llevar ideas a producción con calidad.</p>
+        <div class="skills-grid"></div>
+        <div class="skills-cta">
+          <button class="landing-actions__button-primary" data-scroll="#proyectos">
+            Ver cómo las aplico
+          </button>
+        </div>
+      </section>
+      <section
+        id="proyectos"
+        class="projects reveal fourthPage"
+        data-animate="fade-up"
+        aria-labelledby="titulo-proyectos"
+      >
+        <h2 id="titulo-proyectos">Proyectos</h2>
+        <p class="section-lead">
+          Selección de trabajos que muestran enfoque en performance, claridad y experiencia de
+          usuario.
+        </p>
+        <div class="projects-toolbar">
+          <div class="projects-filters" aria-label="Filtros de proyectos">
+            <button class="filter-btn" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="filter-btn" data-filter="ecommerce">Ecommerce</button>
+            <button class="filter-btn" data-filter="ui">UI</button>
+            <button class="filter-btn" data-filter="experimentos">Experimentos</button>
+          </div>
+        </div>
+        <ul class="projects-list">
+          <!-- Items de proyectos serán renderizados dinámicamente por JS -->
         </ul>
+        <!-- moved external links to Contacto section -->
       </section>
-      <section class="projects">
-        <h2>Proyectos</h2>
+      <section
+        id="contacto"
+        class="fifthPage reveal"
+        data-animate="fade-up"
+        aria-labelledby="titulo-contacto"
+      >
+        <h2 id="titulo-contacto">Contacto</h2>
         <p>
-          Aquí hay algunos de los proyectos en los que he trabajado. Cada uno
-          refleja mi compromiso con la calidad y la innovación.
-        </p>
-        <ul>
-          <li class="project-card">
-            <img
-              class="project-card__imageContainer"
-              src="computer.png"
-              alt="project-image-container"
-            />
-            <div class="project-card__imageContainerShadow">
-              <img
-                class="project-card__image"
-                src="eiffel.png"
-                alt="project-image-eiffel"
-              />
-            </div>
-            <p class="project-card__title">Eiffel</p>
-            <p class="project-card__description">
-              E-commerce de panes y alimentos sin TACC
-            </p>
-            <div class="project-card__actions">
-              <button
-                onclick="window.open('https://eiffel-sp.com.ar', '_blank')"
-                class="project-card__actionButton"
-                type="button"
-              >
-                Ver más
-              </button>
-              <button
-                class="project-card__actionButton"
-                type="button"
-                onclick="window.open('https://github.com/valenfontana7/eiffel-client', '_blank')"
-              >
-                Repositorio
-              </button>
-            </div>
-          </li>
-          <li class="project-card">
-            <img
-              class="project-card__imageContainer"
-              src="computer.png"
-              alt="project-image-container"
-            />
-            <div class="project-card__imageContainerShadow">
-              <img
-                class="project-card__image"
-                src="harry-potter.jpeg"
-                alt="project-image-eiffel"
-              />
-            </div>
-            <p class="project-card__title">Harry Potter App</p>
-            <p class="project-card__description">Web tributo a Harry Potter</p>
-            <div class="project-card__actions">
-              <button
-                onclick="window.open('https://harrypotter-app.vercel.app/', '_blank')"
-                class="project-card__actionButton"
-                type="button"
-              >
-                Ver más
-              </button>
-              <button
-                class="project-card__actionButton"
-                type="button"
-                onclick="window.open('https://github.com/valenfontana7/harry_potter_fanpage', '_blank')"
-              >
-                Repositorio
-              </button>
-            </div>
-          </li>
-          <li class="project-card">
-            <img
-              class="project-card__imageContainer"
-              src="computer.png"
-              alt="project-image-container"
-            />
-            <div class="project-card__imageContainerShadow">
-              <img
-                class="project-card__image"
-                src="cat.jpg"
-                alt="project-image-eiffel"
-              />
-            </div>
-            <p class="project-card__title">Cats App</p>
-            <p class="project-card__description">Showcase de fotos de gatos</p>
-            <div class="project-card__actions">
-              <button
-                onclick="window.open('https://meow-cool-app.vercel.app', '_blank')"
-                class="project-card__actionButton"
-                type="button"
-              >
-                Ver más
-              </button>
-              <button
-                class="project-card__actionButton"
-                type="button"
-                onclick="window.open('https://github.com/valenfontana7/meow-app', '_blank')"
-              >
-                Repositorio
-              </button>
-            </div>
-          </li>
-        </ul>
-        <p>
-          Si quieres ver más proyectos, puedes visitar mi perfil de GitHub:
-          <a target="_blank" href="https://github.com/valenfontana7"
-            >ValenFontana7</a
-          >
-        </p>
-        <p>
-          También puedes ver mi perfil de LinkedIn para más detalles sobre mi
-          experiencia profesional:
-          <a target="_blank" href="https://www.linkedin.com/in/valenfontana7/"
-            >Valentín Fontana</a
-          >
-        </p>
-      </section>
-      <section class="fifthPage">
-        <h2>Contacto</h2>
-        <p>
-          Si estás interesado en trabajar conmigo o simplemente quieres charlar,
-          no dudes en contactarme.
+          Si estás interesado en trabajar conmigo o simplemente quieres charlar, no dudes en
+          contactarme.
         </p>
         <p>
           Puedes enviarme un correo a:
           <a href="mailto:valenfontana7@gmail.com">valenfontana7@gmail.com</a>
         </p>
+        <div class="projects-links">
+          <a
+            class="external-link-card github"
+            href="https://github.com/valenfontana7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="elc-icon" aria-hidden="true">
+              <!-- GitHub SVG -->
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.57.11.78-.25.78-.55 0-.27-.01-1-.02-1.95-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.69.08-.69 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.75.4-1.25.72-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.43-2.7 5.41-5.27 5.69.41.35.77 1.03.77 2.08 0 1.5-.01 2.71-.01 3.08 0 .3.2.66.79.55C20.71 21.38 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"
+                />
+              </svg>
+            </span>
+            <span class="elc-body">
+              <span class="elc-title">Más en GitHub</span>
+              <span class="elc-sub">@ValenFontana7</span>
+            </span>
+          </a>
+          <a
+            class="external-link-card linkedin"
+            href="https://www.linkedin.com/in/valenfontana7/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="elc-icon" aria-hidden="true">
+              <!-- LinkedIn SVG -->
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4zM8.5 8h3.8v2.13h.05c.53-1 1.82-2.13 3.74-2.13C20.3 8 24 10.34 24 15.74V24h-4v-7.1c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.75 1.86-2.75 3.78V24h-4V8z"
+                />
+              </svg>
+            </span>
+            <span class="elc-body">
+              <span class="elc-title">Perfil profesional</span>
+              <span class="elc-sub">LinkedIn</span>
+            </span>
+          </a>
+        </div>
       </section>
-      <footer>
-        <p>© 2025 Valentin Fontana. Todos los derechos reservados.</p>
-        <p>
-          Hecho por:
-          <a href="https://github.com/ValenFontana7">Valentín Fontana</a>
-        </p>
+      <footer class="footer" role="contentinfo">
+        <div class="footer__legal">
+          <div>© 2025 Valentin Fontana. Todos los derechos reservados.</div>
+          <div>Hecho por <a href="https://github.com/ValenFontana7">Valentín Fontana</a></div>
+        </div>
       </footer>
     </main>
+    <script type="module" src="./js/main.js"></script>
+    <!-- React entry (mounts into #react-root) -->
+    <script type="module" src="/src/react/main.jsx"></script>
+    <noscript>
+      <style>
+        .project-card {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+      <p>La funcionalidad dinámica está limitada porque JavaScript está deshabilitado.</p>
+    </noscript>
   </body>
 </html>

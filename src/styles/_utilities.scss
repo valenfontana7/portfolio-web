@@ -1,0 +1,66 @@
+/* Utilidades: visually-hidden, reveal animations */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s, transform 0.5s;
+  will-change: opacity, transform;
+}
+.reveal[data-animate='fade-in'] {
+  transform: scale(0.98);
+}
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal--visible[data-animate='fade-in'] {
+  transform: scale(1);
+}
+.reveal--visible[data-animate='fade-up'] {
+  transform: translateY(0);
+}
+
+/* Backwards-compatible alias for older CSS that used .reveal.revealed */
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Prevent FOUC: hide dynamic sections until JS has had a chance to run.
+   We add .js to <html> early via inline script in index.html. */
+html:not(.js) .projects-list,
+html:not(.js) .skills-grid,
+html:not(.js) .hero-metrics {
+  visibility: hidden;
+}
+
+/* CSS variable for mobile viewport height (fix iOS address bar issues) */
+:root {
+  --vh: 1vh; /* fallback */
+}
+
+.fullscreen {
+  /* altura que respeta la barra de direcciones en iOS cuando --vh está calculada */
+  height: calc(var(--vh) * 100);
+  min-height: 100vh; /* fallback */
+}
+
+/* Safe-area helpers */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0);
+}

@@ -1,0 +1,9 @@
+/* Misc small helpers retained: motion preferences and tiny helpers */
+@media (prefers-reduced-motion: reduce) {
+  .skill-chip,
+  .skill-chip:hover,
+  .skill-chip:active {
+    transition: none !important;
+    transform: none !important;
+  }
+}

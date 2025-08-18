@@ -1,0 +1,232 @@
+@use '../variables' as v;
+/* Skills and skill-cards styles */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2.2rem;
+}
+
+/* Espaciado de la sección Habilidades: título -> lead -> lista -> cta */
+.skills-section {
+  display: block;
+  /* centrado y límites de ancho para mejorar la legibilidad */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-block: 1.2rem;
+  padding-inline: var(--side-gap, 1.25rem);
+}
+
+.skills-section .section-lead {
+  margin-top: 0.6rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  color: v.$legacy-muted;
+  max-width: 72ch; /* limitar la línea para mejor lectura */
+  line-height: 1.5;
+}
+
+.skills-section .skills-grid {
+  margin-top: 0.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.skills-cta {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.skill-category {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1rem; /* padding equilibrado para contener título y lista */
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  overflow: visible;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem; /* espacio consistente entre título y lista */
+  align-items: stretch;
+  margin-bottom: 1.6rem; /* separación vertical entre categorías */
+}
+.skill-category:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.55);
+}
+.skill-category::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 120% 10%, rgba(255, 255, 255, 0.04), transparent 60%);
+  pointer-events: none;
+}
+.skill-category__title {
+  font-size: clamp(1.4rem, 1.2vw + 1rem, 1.9rem);
+  margin: 0;
+  padding-bottom: 0.35rem;
+  font-weight: 600;
+  color: v.$color-text;
+  letter-spacing: 0.01rem;
+}
+.skill-category__list:not(.skill-chips-list) {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.8rem;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-start; /* asegurar alineado a la izquierda */
+}
+
+/* Legacy-style chips (card-like) used by some categories */
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 0.9rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  color: v.$color-text;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 160ms ease;
+}
+.skill-chip:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
+}
+
+/* Skill cards: reutilizan la apariencia de project-card pero en tamaño compacto */
+.skill-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.8rem;
+}
+
+/* Simplified skill button */
+.skill {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.15rem; /* un poco más de separación entre icono y texto */
+  width: 100%;
+  padding: 1rem 1.2rem; /* más espacio para mejorar legibilidad */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  color: v.$color-text;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  font-family: 'Georgia', serif;
+  font-weight: 300;
+}
+.skill__icon {
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.skill__icon svg {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  max-width: 100%;
+  max-height: 100%;
+}
+.skill__label {
+  font-size: 1.25rem; /* aumentado para mejor lectura */
+  line-height: 1.35; /* line-height más generoso para legibilidad */
+  color: v.$color-text;
+}
+.skill:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
+}
+.skill--active {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.06));
+  border-color: rgba(123, 200, 100, 0.12);
+}
+
+/* Cuando la lista de la categoría usa el grid de chips, usar columnas más compactas y alineadas a la izquierda */
+.skill-category .skill-chips-list {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.8rem;
+  justify-items: start; /* alinea cada tarjeta al inicio de la celda */
+  align-items: start;
+}
+
+@media (min-width: 1200px) {
+  .skill-category .skill-chips-list {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-category .skill-chips-list {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.5rem;
+  }
+}
+
+/* Mobile tweaks for skills */
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-section .section-lead {
+    margin-bottom: 1rem;
+  }
+
+  .skill {
+    padding: 0.8rem 1rem;
+  }
+
+  .skill__icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .skill__label {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill {
+    padding: 0.6rem 0.8rem;
+  }
+  .skill__icon {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  .skill__label {
+    font-size: 1.2rem;
+  }
+  .skill-category__list,
+  .skill-category .skill-chips-list {
+    gap: 0.4rem;
+  }
+}
+
+/* Small helper: check icon animation for skill chips */
+.skill-chip__check {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  transform: translateY(-1px) scale(0.9);
+  transition: opacity 160ms ease, transform 160ms ease, color 160ms ease;
+}
+.skill-chip[aria-pressed='true'] .skill-chip__check {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  color: #2b2b2b; /* contrast on light accent */
+}

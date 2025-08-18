@@ -1,0 +1,14 @@
+@use 'variables' as v;
+@use 'sass:color' as color;
+
+/* Re-export de partials para mantener compatibilidad con `@use 'components'` desde `main.scss`.
+  Los partials viven ahora en `src/styles/components/` y se agrupan aquí con @forward. */
+
+@forward 'components/buttons';
+@forward 'components/skills';
+@forward 'components/projects';
+@forward 'components/links';
+@forward 'components/misc';
+@forward 'components/footer';
+/* Los estilos de componentes se han movido a partials dentro de
+  src/styles/components/ y se re-exportan arriba con @forward. */

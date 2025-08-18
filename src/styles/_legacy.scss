@@ -1,0 +1,173 @@
+/* Copia completa del styles.css original como respaldo antes de eliminarlo de la raíz */
+/* A continuación está el contenido original de styles.css embebido para preservarlo durante la migración.
+	 No se usa directamente por el build; es solo un respaldo dentro de src/styles.
+	 Puedes borrar este archivo definitivamente una vez que verifiques que todo está correctamente migrado.
+*/
+
+/* --- Inicio del respaldo de styles.css --- */
+/* NOTE: Este es un archivo de respaldo generado automáticamente. No editar directamente si planeas mantener la copia en la raíz. */
+
+:root {
+  --bg: #0f1724;
+  --surface: #0b1220;
+  --muted: #94a3b8;
+  --accent: #7c3aed;
+  --accent-2: #06b6d4;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --success: #16a34a;
+  --danger: #ef4444;
+  --shadow: rgba(2, 6, 23, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial;
+  background: var(--bg);
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  z-index: 40;
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.header__logo {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 0;
+}
+.hero__content {
+  max-width: 720px;
+}
+.hero__title {
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  line-height: 1.02;
+  margin: 0 0 0.5rem;
+}
+.hero__lead {
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+.skills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.skill-chip {
+  background: var(--glass);
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.project-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  border-radius: 10px;
+  padding: 1rem;
+}
+.project-card__title {
+  font-weight: 600;
+}
+.project-card__desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s, var(--transform) 0.5s;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.sideBarNav {
+  position: fixed;
+  right: 16px;
+  top: 120px;
+}
+.sideBarNav__nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sideBarNav__nav li button {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+footer {
+  padding: 3rem 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sideBarNav {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 4rem 0;
+  }
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Fin del respaldo de styles.css --- */
