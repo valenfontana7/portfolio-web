@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as v;
 
 /* Altura del header usada para offsets de scroll */
@@ -122,7 +123,7 @@ header.header {
   bottom: 1.2rem;
   width: 6px;
   border-radius: 6px;
-  background: linear-gradient(180deg, v.$color-accent, mix(v.$color-accent, #000, 20%));
+  background: linear-gradient(180deg, v.$color-accent, color.mix(v.$color-accent, #000, 20%));
   opacity: 0.7;
   pointer-events: none;
 }

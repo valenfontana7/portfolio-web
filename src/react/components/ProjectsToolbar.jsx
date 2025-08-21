@@ -6,6 +6,7 @@ const FILTERS = [
   { key: 'ecommerce', label: 'Ecommerce' },
   { key: 'ui', label: 'UI' },
   { key: 'experimentos', label: 'Experimentos' },
+  { key: 'landing', label: 'Landing' },
 ];
 
 export default function ProjectsToolbar() {

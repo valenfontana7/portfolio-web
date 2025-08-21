@@ -13,6 +13,13 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
+    <!-- Preload hero image to ensure it's treated as critical (avoid lazy placeholder) -->
+    <link rel="preload" as="image" href="/me.png" />
+    <!-- Preload project thumbnails (first fold) -->
+    <link rel="preload" as="image" href="/eiffel-web.png" />
+    <link rel="preload" as="image" href="/torito-web.png" />
+    <link rel="preload" as="image" href="/costee-web.png" />
+    <link rel="preload" as="image" href="/kpbags.png" />
     <!-- React root (mount point for the new React app; exists alongside the static content) -->
     <div id="react-root" aria-hidden="true"></div>
     <header role="banner">
@@ -146,7 +153,14 @@
           </div>
         </div>
         <div class="hero__visual">
-          <img class="me" src="me.png" alt="Foto de Valentín" />
+          <img
+            class="me"
+            src="me.png"
+            alt="Foto de Valentín"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+          />
         </div>
       </section>
       <section
